@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVn+Quj5hvkyHP3rpd5S5aAAAAAACAAAAAAAQZgAAAAEAACAAAABjVR0jJxlLfk98bHK6rS/fMaKyJZRLOGia326SALbpagAAAAAOgAAAAAIAACAAAACXBM+F8g0NgG2MS0ZS/fxQib9qflqzOCidDUrN9G4ZeYAAAAD5qn25jkHsEj1edxfAQGrSkYlqiV75lUW1F06DV05I8+jtKP9XCOxtLSECrhjsUutaCs592hCqd305xbA55my2mu9yaHj/dOCUzv5K64dy6THRHX1pD8mFJhsSj0DNvfWSXcjTa8mdnagJeNrSzlV26Qvg4cmvwVH5mIGkCctHbkAAAAD1/2wWxoq/YAincS/XzAJ+thQLLbKCvssCngApFU5qitfNYyoPtHr+3LoXmSwOB+coImEVNa/GIaVVqOJzGpf1</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="StoryContext">
+      <Value>Server=tcp:ivancastronuno.database.windows.net,1433%3bInitial Catalog=FanPage%3bPersist Security Info=False%3bUser ID=root2%3bPassword=ivan2733%40%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="IvanCastronuno.Models.StoryContext">
+      <Value>Server=tcp:ivancastronuno.database.windows.net,1433%3bInitial Catalog=FanPage%3bPersist Security Info=False%3bUser ID=root2%3bPassword=ivan2733%40%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

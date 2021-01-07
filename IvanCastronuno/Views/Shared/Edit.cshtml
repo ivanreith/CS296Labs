@@ -1,0 +1,49 @@
+﻿@model StoriesModelForm
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+@{
+    string title = ViewBag.Action + " Story";
+    ViewBag.Title = title;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="StoryTitle">Title</label>
+        <input asp-for="StoryTitle" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StoryTopic">Topic</label>
+        <input asp-for="StoryTopic" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="StoryText">Text</label>
+        <input asp-for="StoryText" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="UserId">Poster</label>
+        <select asp-for="UserId" class="form-control">
+            <option value="">select a User</option>
+            @foreach (User g in ViewBag.Users)
+            {
+                <option value="@g.UserId">@g.UserName</option>
+            }
+        </select>
+    </div>
+
+
+
+    <input type="hidden" asp-for="StoryID" />
+
+    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <a asp-controller="Home" asp-action="Stories"
+       class="btn btn-primary">Cancel</a>
+</form>

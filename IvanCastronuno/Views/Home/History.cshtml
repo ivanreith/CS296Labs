@@ -1,0 +1,61 @@
+﻿@model QuizAnswers
+@{
+    ViewData["Title"] = "History";
+}
+<h1>@ViewData["Title"]</h1>
+<h6>Use this page to comment facts and curiosities about History.</h6>
+<h3>Here you can take a quiz!!</h3>
+<div class="container">
+    <form method="post" class="form-group p-lg-4 p-md-4 p-0 p-sm-4 bg-light">
+        <h6>Tell me your name, if you leave it blank is a failed test</h6>
+        <div class="row">
+            <label class="control-label col-3 col-sm-6 col-md-4 col-lg-12" asp-for="UserQuesting.UserName">Your name</label>
+            <input class="form-control col-sm-10 bg-light text-info" asp-for="UserQuesting.UserName" />
+        </div>
+        <div>
+            <h6>Answer the first question??</h6>
+            <input asp-for="Quest1" type="radio" name="Quest1" value="answer1">
+            <label asp-for="Quest1" for="male">correct answer1</label><br>
+            <input asp-for="Quest1" type="radio"  name="Quest1" value="answer2">
+            <label asp-for="Quest1" for="female">wrong answer2</label><br>
+            <input asp-for="Quest1" type="radio"  name="Quest1" value="answer3">
+            <label asp-for="Quest1" for="other">wrong answer3</label>
+        </div>
+
+        <div>
+            <h6>Answer the second question??</h6>
+            <input asp-for="Quest2" type="radio" name="Quest2" value="answer1">
+            <label asp-for="Quest2" for="male">wrong answer1</label><br>
+            <input asp-for="Quest2" type="radio" name="Quest2" value="answer2">
+            <label asp-for="Quest2" for="female">correct answer2</label><br>
+            <input asp-for="Quest2" type="radio"  name="Quest2" value="answer3">
+            <label asp-for="Quest2" for="other">wrong answer3</label>
+        </div>
+
+        <div class="jumbotron-fluid bg-light p-3">
+            <div class="row">
+                <button type="submit" class="btn btn-success" value="submit">Check Me!</button>
+                <button type="reset" class="btn btn-warning">Not sure now...</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="container-fluid bg-light text- ">
+    @if (Model != null)
+    {
+        <h2> YOUR ANSWERS:</h2>
+        <p>
+            <h6>Did I pass?? :</h6>
+            @Model.CheckQuiz(Model)
+            <h6>Who tooked it :</h6>
+            @Model.UserQuesting.UserName<br />
+            <h6>Your answer to question 1:</h6>
+            @Model.Quest1
+            <span> was @Model.Quest1AnswerRight</span><br />
+            <h6>Your answer to question 2:</h6>
+            @Model.Quest2
+            <span> was @Model.Quest2AnswerRight</span><br />
+        </p>}
+</div>

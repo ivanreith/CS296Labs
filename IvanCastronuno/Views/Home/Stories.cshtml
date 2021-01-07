@@ -1,0 +1,40 @@
+﻿@model List<StoriesModelForm>
+@{
+    ViewBag.Title = "Stories";
+}
+
+<h2>Tell us about your adventures while going to events.</h2>
+
+<a asp-controller="Story" asp-action="Add">Add Story</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Topic</th>            
+            <th>Text</th>
+            <th>User</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        { 
+            @foreach (var story in Model)
+            {
+                <tr>
+                    <td>@story.StoryTitle</td>
+                    <td>@story.StoryTopic</td>                    
+                    <td>@story.StoryText</td>
+                    <td>@story.Poster.UserName</td>
+                    <td>
+                        <a asp-controller="Story" asp-action="Edit"
+                           asp-route-id="@story.StoryID"
+                           asp-route-slug="@story.Slug">Edit</a>
+                        <a asp-controller="Story" asp-action="Delete"
+                           asp-route-id="@story.StoryID"
+                           asp-route-slug="@story.Slug">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
