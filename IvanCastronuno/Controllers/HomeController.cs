@@ -17,7 +17,7 @@ namespace IvanCastronuno.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }*/
+        }*/// keep that part just in case
         // Start database adding stuff
         private StoryContext Context { get; set; }
 
@@ -28,9 +28,10 @@ namespace IvanCastronuno.Controllers
 
         public IActionResult Stories()
         {
-            var stories = Context.Stories.Include(m => m.Poster)
+            List<StoriesModelForm> stories = Context.Story.Include(m => m.Poster)
                 .OrderBy(m => m.StoryTopic).ToList();
             return View(stories);
+            
         }
         // End database adding stuff 
         
@@ -50,23 +51,7 @@ namespace IvanCastronuno.Controllers
             return View(model);
 
         }
-        /*
-        public IActionResult Stories()
-
-          
-             {
-
-           
-                //  ViewBag.FV = 99999;  Something for the empty
-                return View();
-            }
-            [HttpPost]
-            public IActionResult Stories(StoriesModelForm model)
-            {
-              
-                    return View(model);
-            
-            }*/
+    
    
         public IActionResult SourcesIndex()
         {

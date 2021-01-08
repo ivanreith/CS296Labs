@@ -17,7 +17,7 @@ namespace IvanCastronuno.Models
             : base(options)
         { }
 
-        public DbSet<StoriesModelForm> Stories { get; set; }
+        public DbSet<StoriesModelForm> Story { get; set; }
         public DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,7 +40,7 @@ namespace IvanCastronuno.Models
                     StoryTopic = "Travel",
                     StoryText = "To do a travel wearing armor isn't fun",
                     UserId = "1",
-                 
+                    StoryTime = DateTime.Today
                 },
                 new StoriesModelForm
                 {
@@ -49,7 +49,8 @@ namespace IvanCastronuno.Models
                     StoryTopic = "Use instructions",
                     StoryText = "To redo your costume three times for not follow the instructions is a common noob mistake.",
                     UserId = "6",
-                   
+                    StoryTime = DateTime.Today
+
                 },
                 new StoriesModelForm
                 {
@@ -58,9 +59,10 @@ namespace IvanCastronuno.Models
                     StoryTopic = "Find friends",
                     StoryText = "When on a recreation , if u have food , you'll find friends",
                     UserId = "7",
-                   
+                    StoryTime = DateTime.Today
+
                 }
-            );
+            ) ;
         }
     }
 }
