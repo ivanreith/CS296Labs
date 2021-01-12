@@ -28,7 +28,7 @@ namespace IvanCastronuno.Controllers
                 
                 story.StoryID = 0;
                 ViewBag.Action = "Add";
-                ViewBag.Users = Context.User.OrderBy(g => g.UserName).ToList();
+                ViewBag.Users = Context.AppUser.OrderBy(g => g.Name).ToList();
                 return View("Edit", story);// new StoriesModelForm() 
            
         }
@@ -37,7 +37,7 @@ namespace IvanCastronuno.Controllers
         public IActionResult Edit(int id)
         {
             ViewBag.Action = "Edit";
-            ViewBag.Users = Context.User.OrderBy(g => g.UserName).ToList();
+            ViewBag.Users = Context.AppUser.OrderBy(g => g.Name).ToList();
             var story = Repo.GetStoryById(id);
            
           //  var story = Context.Story.Find(id);
@@ -64,8 +64,8 @@ namespace IvanCastronuno.Controllers
             else
             {
                 // ViewBag.Action = (story.StoryID == 0) ? "Add" : "Edit";   ==>> I leave these two line because where the ones giving me trouble
-                // ViewBag.Users = Repo.stories.OrderBy(story => story.Poster.UserName).ToList(); => that was bad but never got tested until input testing
-                ViewBag.Users = Context.User.OrderBy(g => g.UserName).ToList();
+                // ViewBag.Users = Repo.stories.OrderBy(story => story.Poster.Name).ToList(); => that was bad but never got tested until input testing
+                ViewBag.Users = Context.AppUser.OrderBy(g => g.Name).ToList();
                 return View(story);
             }
         }

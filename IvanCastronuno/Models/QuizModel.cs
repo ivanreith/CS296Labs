@@ -10,7 +10,7 @@ namespace IvanCastronuno.Models
     public class QuizAnswers
     {
 
-        public User UserQuesting { get; set; }
+        public AppUser UserQuesting { get; set; }
         public string Quest1 { get; set; }
         public string Quest1AnswerRight { get; set; }
         public string Quest2 { get; set; }
@@ -38,7 +38,7 @@ namespace IvanCastronuno.Models
                {
                    model.Quest2AnswerRight = "Incorrect!";
                }
-            if (model.Quest1 == "answer1" && model.Quest2 == "answer2" && model.UserQuesting.UserName != null)
+            if (model.Quest1 == "answer1" && model.Quest2 == "answer2" && model.UserQuesting.Name != null)
                     resultQuiz = " Pass!";
 
           
