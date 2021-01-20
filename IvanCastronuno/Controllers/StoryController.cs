@@ -10,7 +10,7 @@ namespace IvanCastronuno.Controllers
 {
     public class StoryController : Controller
     {
-        // StoryContext c,  Context = c;
+        // StoryContext c,  Context = c; ==>> Now using the repo for the most part
         IStories Repo;
         StoryContext Context { get; set; }
 
@@ -21,29 +21,30 @@ namespace IvanCastronuno.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add(StoriesModelForm story)
+        public IActionResult Add()  //StoriesModelForm story  => it doesn't need the object , it's empty
         {
-            ViewBag.Action = "Add";
-            ViewBag.Users = Context.User.OrderBy(g => g.UserName).ToList();
-            return View("Edit", story);// new StoriesModelForm()
+         
+               var story = new StoriesModelForm();
+                
+                story.StoryID = 0;
+                ViewBag.Action = "Add";
+                ViewBag.Users = Context.AppUser.OrderBy(g => g.Name).ToList();
+                return View("Edit", story);// new StoriesModelForm() 
+           
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
             ViewBag.Action = "Edit";
-            ViewBag.Users = Context.User.OrderBy(g => g.UserName).ToList();
+            ViewBag.Users = Context.AppUser.OrderBy(g => g.Name).ToList();
             var story = Repo.GetStoryById(id);
-            /*
-            var story = Context.Stories.Find(id);*/
+           
+          //  var story = Context.Story.Find(id);
             return View(story);
         }
 
-       /* public void AddStory(StoriesModelForm story)
-        {
-            Repo.AddStory(story);
-        }
-       */
+      
         [HttpPost]
         public IActionResult Edit(StoriesModelForm story)
         {
@@ -55,14 +56,16 @@ namespace IvanCastronuno.Controllers
                 }
                 //
                 else
+
                     Repo.UpdateStory(story);
                    
                 return RedirectToAction("Stories", "Home");
             }
             else
             {
-                ViewBag.Action = (story.StoryID == 0) ? "Add" : "Edit";
-                ViewBag.Users = Repo.stories.OrderBy(story => story.Poster.UserName).ToList();
+                // ViewBag.Action = (story.StoryID == 0) ? "Add" : "Edit";   ==>> I leave these two line because where the ones giving me trouble
+                // ViewBag.Users = Repo.stories.OrderBy(story => story.Poster.Name).ToList(); => that was bad but never got tested until input testing
+                ViewBag.Users = Context.AppUser.OrderBy(g => g.Name).ToList();
                 return View(story);
             }
         }
@@ -71,7 +74,7 @@ namespace IvanCastronuno.Controllers
         public IActionResult Delete(int id)
         {
             
-            var story = Context.Stories.Find(id);
+            var story = Context.Story.Find(id);
             return View(story);
         }
 

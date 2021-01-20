@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TRANSFER ASUS\\CS295N\\WEEK8\\CS295N-Icastronuno\\IvanCastronuno\\IvanCastronuno.csproj": {}
+    "D:\\TRANSFER ASUS\\CS296\\Lab02\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj": {}
   },
   "projects": {
-    "D:\\TRANSFER ASUS\\CS295N\\WEEK8\\CS295N-Icastronuno\\IvanCastronuno\\IvanCastronuno.csproj": {
+    "D:\\TRANSFER ASUS\\CS296\\Lab02\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TRANSFER ASUS\\CS295N\\WEEK8\\CS295N-Icastronuno\\IvanCastronuno\\IvanCastronuno.csproj",
+        "projectUniqueName": "D:\\TRANSFER ASUS\\CS296\\Lab02\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj",
         "projectName": "IvanCastronuno",
-        "projectPath": "D:\\TRANSFER ASUS\\CS295N\\WEEK8\\CS295N-Icastronuno\\IvanCastronuno\\IvanCastronuno.csproj",
+        "projectPath": "D:\\TRANSFER ASUS\\CS296\\Lab02\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj",
         "packagesPath": "C:\\Users\\ivanr\\.nuget\\packages\\",
-        "outputPath": "D:\\TRANSFER ASUS\\CS295N\\WEEK8\\CS295N-Icastronuno\\IvanCastronuno\\obj\\",
+        "outputPath": "D:\\TRANSFER ASUS\\CS296\\Lab02\\CS296Labs\\IvanCastronuno\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ivanr\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.9, )"
@@ -54,9 +58,21 @@
               "target": "Package",
               "version": "[3.1.9, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[3.1.9, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
               "version": "[3.1.9, )"
             },
@@ -67,6 +83,12 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.4, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.2.0, )"
             }
           },
           "imports": [
@@ -87,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

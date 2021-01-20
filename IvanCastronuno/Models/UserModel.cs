@@ -3,15 +3,17 @@ using System;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Channels;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace IvanCastronuno.Models
 {
 
-    public class User
+    public class AppUser : IdentityUser
     {
-        public string UserId { get; set; }
-        public string UserName { get; set; }
+        
+        [Required (ErrorMessage = "Name is required....")]
+        [MaxLength(50, ErrorMessage = "Name between 1 and 50 chars")]
+        public string Name { get; set; }
     }
 
 
