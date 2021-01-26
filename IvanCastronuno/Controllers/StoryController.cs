@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using IvanCastronuno.Models;
 using IvanCastronuno.Repositories;
+using Microsoft.AspNetCore.Identity;
 
 namespace IvanCastronuno.Controllers
 {
@@ -54,7 +55,7 @@ namespace IvanCastronuno.Controllers
                 {
                     Repo.AddStory(story);
                 }
-                //
+                
                 else
 
                     Repo.UpdateStory(story);

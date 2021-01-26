@@ -44,8 +44,8 @@ namespace IvanCastronuno
                 Configuration.GetConnectionString("StoryContext")));
             // Stuff added for Identity
             services.AddIdentity<AppUser, IdentityRole>()
-    .AddEntityFrameworkStores<StoryContext>()
-    .AddDefaultTokenProviders();
+             .AddEntityFrameworkStores<StoryContext>()
+             .AddDefaultTokenProviders();
             //End identity stuff
 
         }
