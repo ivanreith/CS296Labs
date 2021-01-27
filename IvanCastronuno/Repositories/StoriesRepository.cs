@@ -33,11 +33,10 @@ namespace IvanCastronuno.Repositories
             }
         }
         
-        [Authorize]
         public void AddStory(StoriesModelForm story)
         {
             story.StoryTime = DateTime.Now;
-            story.Name = story.Poster.UserName; // to add the actual logged in user
+             // TODO add the actual logged in user example string userName = User.Identity.Name
             context.Story.Add(story);
             context.SaveChanges();
         }

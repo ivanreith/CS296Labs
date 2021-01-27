@@ -26,9 +26,6 @@ namespace IvanCastronuno.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PosterId")
                         .HasColumnType("nvarchar(450)");
 
@@ -60,27 +57,24 @@ namespace IvanCastronuno.Migrations
                         new
                         {
                             StoryID = 1,
-                            Name = "Johnny",
                             StoryText = "To do a travel wearing armor isn't fun",
-                            StoryTime = new DateTime(2021, 1, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            StoryTime = new DateTime(2021, 1, 26, 0, 0, 0, 0, DateTimeKind.Local),
                             StoryTitle = "Viaje",
                             StoryTopic = "Travel"
                         },
                         new
                         {
                             StoryID = 2,
-                            Name = "Mannly",
                             StoryText = "To redo your costume three times for not follow the instructions is a common noob mistake.",
-                            StoryTime = new DateTime(2021, 1, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            StoryTime = new DateTime(2021, 1, 26, 0, 0, 0, 0, DateTimeKind.Local),
                             StoryTitle = "Crafting",
                             StoryTopic = "Use instructions"
                         },
                         new
                         {
                             StoryID = 3,
-                            Name = "Diandra",
                             StoryText = "When on a recreation , if u have food , you'll find friends",
-                            StoryTime = new DateTime(2021, 1, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            StoryTime = new DateTime(2021, 1, 26, 0, 0, 0, 0, DateTimeKind.Local),
                             StoryTitle = "Food",
                             StoryTopic = "Find friends"
                         });
@@ -302,86 +296,93 @@ namespace IvanCastronuno.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "60a427a2-25e6-4df5-a26c-33d31eeef1b9",
+                            Id = "bf56465b-d047-486e-9012-9a9188cf09a9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cc29556a-aede-49a0-82b6-4bf9d7217b82",
+                            ConcurrencyStamp = "e9c5315a-1f77-4dce-890f-ea069a6a66fc",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4e6990c9-f336-4112-af76-7373edbe5c26",
+                            SecurityStamp = "d624e8d4-43cc-4bea-b92d-b62b7aa19a9e",
                             TwoFactorEnabled = false,
+                            UserName = "Johnny",
                             Name = "Johnny"
                         },
                         new
                         {
-                            Id = "d2f38745-ccf3-4b43-9721-a6a557b2126a",
+                            Id = "65bd40b3-a7ce-4414-9749-dce37b221db8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5f65b656-fdae-48eb-9108-2ba68e6aa9d8",
+                            ConcurrencyStamp = "deb44eb6-8d54-4fb6-8f25-d201c4a7fe41",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fc2ea4a9-0214-4261-9ea7-c74941ef269f",
+                            SecurityStamp = "c1179e99-b0aa-489e-bd3f-7c87b99c7435",
                             TwoFactorEnabled = false,
+                            UserName = "Tommy",
                             Name = "Tommy"
                         },
                         new
                         {
-                            Id = "8588e411-47f9-4c7a-929b-3a22f2bfca5b",
+                            Id = "14517817-2c79-4e06-9fd0-5f549a9d549a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "622127fd-ee7c-4e86-ba6c-44f48e684eaa",
+                            ConcurrencyStamp = "7a4e13d4-377c-4e21-989d-fc6fd452c123",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d7b9964f-f878-4c45-b8e5-5c432305a3bb",
+                            SecurityStamp = "aa17a7cd-dbce-4b1a-8c08-053836feb8b1",
                             TwoFactorEnabled = false,
+                            UserName = "Danny",
                             Name = "Danny"
                         },
                         new
                         {
-                            Id = "b342a0eb-d623-4ce2-82ba-a2f793e9efec",
+                            Id = "97a426c8-0dee-4ac8-a70d-1725e6b9ee94",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "06448b97-948a-45f8-8090-126d8c357895",
+                            ConcurrencyStamp = "712f6233-d5b1-48de-bb52-ea1b2c2755e7",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "55217e98-547b-4c83-b93c-2495e5cd88d7",
+                            SecurityStamp = "ba43cdeb-b64f-4bb1-9934-fb225094c7e8",
                             TwoFactorEnabled = false,
+                            UserName = "Mannly",
                             Name = "Mannly"
                         },
                         new
                         {
-                            Id = "90381cf3-eeef-4af0-bfcc-0fa26497ff0a",
+                            Id = "e14715e4-5e86-4d4c-8583-eb640f640d46",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a414e7d8-87e8-4fcb-af64-54955e60843e",
+                            ConcurrencyStamp = "4b3fdf63-f535-48e2-bcdf-951359902f63",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "18cc037a-4e42-44b3-8780-e8b47013d4de",
+                            SecurityStamp = "8c4bb9fa-f0d5-4b13-815b-c00410bd95d9",
                             TwoFactorEnabled = false,
+                            UserName = "Conny",
                             Name = "Conny"
                         },
                         new
                         {
-                            Id = "2aab63df-014d-477a-9cfe-37910223d495",
+                            Id = "c39d63a3-b37e-44ab-844e-05a1848dbcb1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "59314fd2-80dc-4d13-85fa-2bce23538c91",
+                            ConcurrencyStamp = "3103ac96-b29c-4ed9-b09d-ab857c3c75f5",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5138b283-b2cc-4763-89a5-5fc79742d3d5",
+                            SecurityStamp = "57588d5f-1411-492f-a834-c2b23d4d4723",
                             TwoFactorEnabled = false,
+                            UserName = "Sunny",
                             Name = "Sunny"
                         },
                         new
                         {
-                            Id = "a0dd29b9-f96f-425a-be8a-f2f8a5bcba15",
+                            Id = "420a9fe5-981a-4043-b947-959037d6cc0e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "50cee1fd-88f7-4921-9246-80d739da532f",
+                            ConcurrencyStamp = "f0dbecbc-8709-4533-b64b-5af441f0626e",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a3325a4f-ea20-48e2-becf-b5ad2cf5d95b",
+                            SecurityStamp = "4a0ce6bc-ecb1-4e9d-8da3-672208ab7099",
                             TwoFactorEnabled = false,
+                            UserName = "Diandra",
                             Name = "Diandra"
                         });
                 });

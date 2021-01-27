@@ -6,21 +6,23 @@ using System.Threading.Channels;
 using IvanCastronuno.Models;
 using IvanCastronuno.Repositories;
 using IvanCastronuno.Controllers;
+using Microsoft.AspNetCore.Identity;
 
 namespace IvanCastronunoTests
 {
     public class StoriesRepoTest
     {
         StoryContext Context { get; set; }
-
-
-    [Fact]
+        UserManager<AppUser> userManager;
+        
+        [Fact]
         public void AddStoryTest()
         {
             //Arrange
             var c = new StoryContext();
+           
             var fakeRepo = new FakeStoriesRepository();
-            var controller = new StoryController(fakeRepo, c);
+            var controller = new StoryController(fakeRepo, c, userManager);
             var Story = new StoriesModelForm()
             {
                 StoryID = 0,
@@ -45,7 +47,7 @@ namespace IvanCastronunoTests
             //Arrange
             var c = new StoryContext();
             var fakeRepo = new FakeStoriesRepository();
-            var controller = new StoryController(fakeRepo,c);
+            var controller = new StoryController(fakeRepo,c, userManager);
             var Story = new StoriesModelForm()
             {
                 StoryID = 0,
@@ -70,7 +72,7 @@ namespace IvanCastronunoTests
             //Arrange
             var c = new StoryContext();
             var fakeRepo = new FakeStoriesRepository();
-            var controller = new StoryController(fakeRepo, c);
+            var controller = new StoryController(fakeRepo, c, userManager);
             var Story = new StoriesModelForm()
             {
                 StoryID = 0,
@@ -115,7 +117,7 @@ namespace IvanCastronunoTests
             //Arrange
             var c = new StoryContext();
             var fakeRepo = new FakeStoriesRepository();
-            var controller = new StoryController(fakeRepo, c);
+            var controller = new StoryController(fakeRepo, c , userManager);
             var Story = new StoriesModelForm()
             {
                 StoryID = 0,

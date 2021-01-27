@@ -25,7 +25,7 @@ namespace IvanCastronuno.Models
         {
            base.OnModelCreating(modelBuilder);//  Internet suggestion to solve some problem.
             modelBuilder.Entity<AppUser>().HasData(
-                 new AppUser {Name = "Johnny", UserName = "Johnny"},// Removed for identity reason , parent  class has this =>  UserId = "1", etc
+               new AppUser {Name = "Johnny", UserName = "Johnny"},// Removed for identity reason , parent  class has this =>  UserId = "1", etc
                  new AppUser {Name = "Tommy", UserName = "Tommy" },
                  new AppUser {Name = "Danny", UserName = "Danny" },
                  new AppUser {Name = "Mannly", UserName = "Mannly" },
@@ -33,15 +33,16 @@ namespace IvanCastronuno.Models
                  new AppUser {Name = "Sunny", UserName = "Sunny" },
                  new AppUser {Name = "Diandra", UserName = "Diandra" }
              );
-          
+            
             modelBuilder.Entity<StoriesModelForm>().HasData(
+               
                 new StoriesModelForm
                 {
                     StoryID = 1,
                     StoryTitle = "Viaje",
                     StoryTopic = "Travel",
                     StoryText = "To do a travel wearing armor isn't fun",
-                    Name = "Johnny", // that is the userId for the identity user model
+                    //Poster = poster1, // that is the userId for the identity user model
                     StoryTime = DateTime.Today
                 },
                 new StoriesModelForm
@@ -50,7 +51,7 @@ namespace IvanCastronuno.Models
                     StoryTitle = "Crafting",
                     StoryTopic = "Use instructions",
                     StoryText = "To redo your costume three times for not follow the instructions is a common noob mistake.",
-                    Name = "Mannly", // that is the userId for the identity user model
+                   // Poster = poster2, // that is the userId for the identity user model
                     StoryTime = DateTime.Today
 
                 },
@@ -60,7 +61,7 @@ namespace IvanCastronuno.Models
                     StoryTitle = "Food",
                     StoryTopic = "Find friends",
                     StoryText = "When on a recreation , if u have food , you'll find friends",
-                    Name = "Diandra",// that is the userId for the identity user model
+                   // Poster = poster3,// that is the userId for the identity user model
                     StoryTime = DateTime.Today
 
                 }

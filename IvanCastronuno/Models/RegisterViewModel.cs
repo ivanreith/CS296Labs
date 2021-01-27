@@ -7,9 +7,13 @@ namespace IvanCastronuno.Models
 {
     public class RegisterViewModel
     {
-        [Required (ErrorMessage ="Enter Name!!")]
+        [Required (ErrorMessage ="Enter User Name!!")]
         [StringLength(255)]
         public string UserName { get; set; }
+
+        [Required(ErrorMessage = "Please enter a first name.")]
+        [StringLength(255)]
+        public string Firstname { get; set; }
 
         [Required(ErrorMessage = "Please enter an email address.")]
         [DataType(DataType.EmailAddress)]

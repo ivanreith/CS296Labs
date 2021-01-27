@@ -15,12 +15,13 @@ namespace IvanCastronuno.Controllers
     {
         // StoryContext c,  Context = c; ==>> Now using the repo for the most part
         IStories Repo;
-        StoryContext Context { get; set; }
-
-        public StoryController(IStories r, StoryContext c)
+       StoryContext Context { get; set; }
+        UserManager<AppUser> userManager;
+        public StoryController(IStories r, StoryContext c, UserManager<AppUser> u)
         {
-            Context = c;
+           Context = c;
             Repo = r;
+            userManager = u;
         }
         [Authorize]
         [HttpGet]
@@ -28,7 +29,7 @@ namespace IvanCastronuno.Controllers
         {
          
                var story = new StoriesModelForm();
-                story.Name = User.Identity.Name;
+               // story.Name = User.Identity.Name; field removed from story model
                 story.StoryID = 0;
                 ViewBag.Action = "Add";
                 ViewBag.Users = Context.AppUser.OrderBy(g => g.Name).ToList();
@@ -55,13 +56,18 @@ namespace IvanCastronuno.Controllers
             {
                 if (story.StoryID == 0)
                 {
-                    story.Name = User.Identity.Name;
+                    story.Poster = userManager.GetUserAsync(User).Result;
+                    story.Poster.Name = story.Poster.UserName;
+                    // story.Name = User.Identity.Name;  field removed from story model
+                    // story.Poster.Name = User.Identity.Name;
                     Repo.AddStory(story);
                 }
-
+                
                 else
                 {
-                    story.Name = User.Identity.Name;
+                    story.Poster = userManager.GetUserAsync(User).Result;
+                    story.Poster.Name = story.Poster.UserName; // temporary fix
+                    //  story.Name = story.Poster.UserName;
                     Repo.UpdateStory(story);
                     return RedirectToAction("Stories", "Home");
                 }

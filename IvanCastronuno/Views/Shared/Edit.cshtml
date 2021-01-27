@@ -31,19 +31,21 @@
         <input asp-for="StoryText" class="form-control">
         <span asp-validation-for="StoryText" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="Poster.Name">Poster</label>
-        <select asp-for="Poster.Name" class="form-control">
-            <option value="">select a User</option>
-            @foreach (AppUser g in ViewBag.Users)
-            {
-                <option value="@g.Id">@g.UserName</option>
 
-            }
-        </select>
-    </div>
+    @*
+        <div class="form-group">
+            <label asp-for="Poster.Id">Poster</label>
+            <select asp-for="Poster.Id" class="form-control">
+                <option value="">select a User</option>
+                @foreach (AppUser g in ViewBag.Users)
+                {
+                    <option value="@g.Id">@g.UserName</option>
 
-    <input type="hidden" asp-for="Name" value=@User.Identity.Name />
+                }
+            </select>
+        </div>  Removed due to identity, grabbing user from the User.identity
+    *@
+
 
     <input type="hidden" asp-for="StoryID" value="0" />
 
@@ -51,3 +53,4 @@
     <a asp-controller="Home" asp-action="Stories"
        class="btn btn-primary">Cancel</a>
 </form>
+@*  <input type="hidden" asp-for="Name" value=@User.Identity.Name />  removed from the story model*@
