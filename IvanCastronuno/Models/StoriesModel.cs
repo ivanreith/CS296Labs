@@ -25,7 +25,7 @@ namespace IvanCastronuno.Models
         [MaxLength(250, ErrorMessage = "storyText between 1 and 250 chars")]
         public string StoryText { get; set; }
 
-       public string Name { get; set; }   // changfe due to identity stuff 
+        public string Name { get; set; }   // changfe due to identity stuff 
         public AppUser Poster { get; set; }       
         
         public DateTime StoryTime { get; set; }

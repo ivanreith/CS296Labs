@@ -7,6 +7,8 @@ using IvanCastronuno.Models;
 using IvanCastronuno.Repositories;
 using Microsoft.AspNetCore.Identity;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace IvanCastronuno.Controllers
 {
     public class StoryController : Controller
@@ -20,13 +22,13 @@ namespace IvanCastronuno.Controllers
             Context = c;
             Repo = r;
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult Add()  //StoriesModelForm story  => it doesn't need the object , it's empty
         {
          
                var story = new StoriesModelForm();
-                
+                story.Name = User.Identity.Name;
                 story.StoryID = 0;
                 ViewBag.Action = "Add";
                 ViewBag.Users = Context.AppUser.OrderBy(g => g.Name).ToList();
@@ -51,15 +53,18 @@ namespace IvanCastronuno.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (story.StoryID == 0 )
+                if (story.StoryID == 0)
                 {
+                    story.Name = User.Identity.Name;
                     Repo.AddStory(story);
                 }
-                
-                else
 
+                else
+                {
+                    story.Name = User.Identity.Name;
                     Repo.UpdateStory(story);
-                   
+                    return RedirectToAction("Stories", "Home");
+                }
                 return RedirectToAction("Stories", "Home");
             }
             else

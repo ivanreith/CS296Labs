@@ -67,9 +67,8 @@ namespace IvanCastronuno
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
             app.UseAuthentication(); // ADDED for indentity
+            app.UseAuthorization();           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

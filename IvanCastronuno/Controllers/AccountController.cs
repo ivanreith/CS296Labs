@@ -20,13 +20,65 @@ namespace IvanCastronuno.Controllers
         // Register login and logout methods go after here : ++++++++++++++
         public IActionResult Register()
         {
+
             return View();
         }
-        public IActionResult LogIn()
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var user = new AppUser { UserName = model.UserName, Name = model.UserName };
+                var result = await userManager.CreateAsync(user, model.Password);
+                if(result.Succeeded)
+                {
+                    await signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Index", "Home");
+
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+            return View(model);
         }
-        
+        [HttpGet]
+        public IActionResult LogIn(string returnURL = "")
+        {
+            var model = new LogInViewModel { ReturnUrl = returnURL };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LogIn(LogInViewModel model)
+        {
+           if (ModelState.IsValid)
+            {
+                var result = await signInManager.PasswordSignInAsync(
+                    model.Username, model.Password, isPersistent: model.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                    {
+                        return Redirect(model.ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+
+                    }
+
+                }
+            }
+            ModelState.AddModelError("", "Invalid combination user/password. Try again :P");
+            return View(model);
+        }
+
+
         public async Task<IActionResult> LogOut()
         {
             await signInManager.SignOutAsync();

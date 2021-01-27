@@ -1,9 +1,14 @@
 ﻿using IvanCastronuno.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
+
 //, StoriesRepository r  //      repo = r;
 
 namespace IvanCastronuno.Repositories
@@ -27,10 +32,12 @@ namespace IvanCastronuno.Repositories
               return context.Story.Include(stories => stories.Poster);
             }
         }
-
+        
+        [Authorize]
         public void AddStory(StoriesModelForm story)
         {
             story.StoryTime = DateTime.Now;
+            story.Name = story.Poster.UserName; // to add the actual logged in user
             context.Story.Add(story);
             context.SaveChanges();
         }

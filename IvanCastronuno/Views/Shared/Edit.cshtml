@@ -32,17 +32,18 @@
         <span asp-validation-for="StoryText" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Poster.UserName">Poster</label>
-        <select asp-for="Poster.UserName" class="form-control">
+        <label asp-for="Poster.Name">Poster</label>
+        <select asp-for="Poster.Name" class="form-control">
             <option value="">select a User</option>
             @foreach (AppUser g in ViewBag.Users)
             {
-                <option value="@g.Id">@g.Name</option>
+                <option value="@g.Id">@g.UserName</option>
+
             }
         </select>
     </div>
 
-
+    <input type="hidden" asp-for="Name" value=@User.Identity.Name />
 
     <input type="hidden" asp-for="StoryID" value="0" />
 

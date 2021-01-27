@@ -10,9 +10,15 @@ namespace IvanCastronuno.Models
         [Required (ErrorMessage ="Enter Name!!")]
         [StringLength(255)]
         public string UserName { get; set; }
+
+        [Required(ErrorMessage = "Please enter an email address.")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
         [Required(ErrorMessage = "Enter Password!!")]
         [DataType(DataType.Password)]
         [Compare("ConfirmPassword")]
+
         public string Password { get; set; }
         [Required(ErrorMessage = "Confirm Password!!")]
         [DataType(DataType.Password)]

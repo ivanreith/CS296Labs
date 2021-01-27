@@ -25,13 +25,13 @@ namespace IvanCastronuno.Models
         {
            base.OnModelCreating(modelBuilder);//  Internet suggestion to solve some problem.
             modelBuilder.Entity<AppUser>().HasData(
-                 new AppUser {Name = "Johnny" },// Removed for identity reason , parent  class has this =>  UserId = "1", etc
-                 new AppUser {Name = "Tommy" },
-                 new AppUser {Name = "Danny" },
-                 new AppUser {Name = "Mannly" },
-                 new AppUser {Name = "Conny" },
-                 new AppUser {Name = "Sunny" },
-                 new AppUser {Name = "Diandra" }
+                 new AppUser {Name = "Johnny", UserName = "Johnny"},// Removed for identity reason , parent  class has this =>  UserId = "1", etc
+                 new AppUser {Name = "Tommy", UserName = "Tommy" },
+                 new AppUser {Name = "Danny", UserName = "Danny" },
+                 new AppUser {Name = "Mannly", UserName = "Mannly" },
+                 new AppUser {Name = "Conny", UserName = "Conny" },
+                 new AppUser {Name = "Sunny", UserName = "Sunny" },
+                 new AppUser {Name = "Diandra", UserName = "Diandra" }
              );
           
             modelBuilder.Entity<StoriesModelForm>().HasData(
