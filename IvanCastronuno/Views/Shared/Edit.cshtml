@@ -18,32 +18,39 @@
     <div class="form-group">
         <label asp-for="StoryTitle">Title</label>
         <input asp-for="StoryTitle" class="form-control">
+        <span asp-validation-for="StoryTitle" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="StoryTopic">Topic</label>
         <input asp-for="StoryTopic" class="form-control">
+        <span asp-validation-for="StoryTopic" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="StoryText">Text</label>
         <input asp-for="StoryText" class="form-control">
-    </div>
-    <div class="form-group">
-        <label asp-for="UserId">Poster</label>
-        <select asp-for="UserId" class="form-control">
-            <option value="">select a User</option>
-            @foreach (User g in ViewBag.Users)
-            {
-                <option value="@g.UserId">@g.UserName</option>
-            }
-        </select>
+        <span asp-validation-for="StoryText" class="text-danger"></span>
     </div>
 
+    @*
+        <div class="form-group">
+            <label asp-for="Poster.Id">Poster</label>
+            <select asp-for="Poster.Id" class="form-control">
+                <option value="">select a User</option>
+                @foreach (AppUser g in ViewBag.Users)
+                {
+                    <option value="@g.Id">@g.UserName</option>
+
+                }
+            </select>
+        </div>  Removed due to identity, grabbing user from the User.identity
+    *@
 
 
-    <input type="hidden" asp-for="StoryID" />
+    <input type="hidden" asp-for="StoryID" value="0" />
 
     <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
     <a asp-controller="Home" asp-action="Stories"
        class="btn btn-primary">Cancel</a>
 </form>
+@*  <input type="hidden" asp-for="Name" value=@User.Identity.Name />  removed from the story model*@
