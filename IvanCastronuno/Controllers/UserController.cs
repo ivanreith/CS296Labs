@@ -1,4 +1,5 @@
 ﻿using IvanCastronuno.Models;
+using IvanCastronuno.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,14 +11,16 @@ using System.Threading.Tasks;
 namespace IvanCastronuno.Controllers
 {
     [Authorize(Roles = "Admin")]
-    [Area("Admin")]
+    //[Area("Admin")]
     public class UserController : Controller
     {
         private UserManager<AppUser> userManager;
         private RoleManager<IdentityRole> roleManager;
+       // private StoriesRepository storyRepo;
         public UserController(UserManager<AppUser> userMngr,
-            RoleManager<IdentityRole> roleMngr)
+            RoleManager<IdentityRole> roleMngr)  //, StoriesRepository storiesRepo  => to add 
         {
+           // storyRepo = storiesRepo;
             userManager = userMngr;
             roleManager = roleMngr;
         }
@@ -45,8 +48,9 @@ namespace IvanCastronuno.Controllers
             if (user != null)
             {
                 IdentityResult result = await userManager.DeleteAsync(user);
-                if (!result.Succeeded) // if failed
+                if (!result.Succeeded)
                 {
+                    // if failed
                     string errorMessage = "";
                     foreach (IdentityError error in result.Errors)
                     {

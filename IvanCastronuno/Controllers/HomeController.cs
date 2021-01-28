@@ -39,7 +39,9 @@ namespace IvanCastronuno.Controllers
         {
             return View();
         }
+
        
+
         public IActionResult History()
         {
             return View();
@@ -51,8 +53,12 @@ namespace IvanCastronuno.Controllers
             return View(model);
 
         }
-    
-   
+
+        public IActionResult AdminIndex()
+        {
+            return View();
+        }
+
         public IActionResult SourcesIndex()
         {
             return View();
