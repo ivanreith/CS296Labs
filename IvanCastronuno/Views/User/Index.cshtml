@@ -5,7 +5,7 @@
 
 <h1 class="mb-2">Manage Users</h1>
 
-<h5 class="mt-2"><a asp-action="Add">Add a User</a></h5>
+<h5 class="mt-2"><a asp-controller="Account" asp-action="Register">Add a User</a></h5>
 
 <table class="table table-bordered table-striped table-sm">
     <thead>
@@ -68,6 +68,7 @@
         </button>
     </form>
 }
+
 else
 {
     <table class="table table-bordered table-striped table-sm">
@@ -91,4 +92,5 @@ else
             }
         </tbody>
     </table>
+    <br />
 }

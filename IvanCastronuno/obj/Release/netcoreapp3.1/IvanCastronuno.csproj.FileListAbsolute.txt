@@ -881,3 +881,4 @@ D:\TRANSFER ASUS\CS296\Lab04\CS296Labs\IvanCastronuno\obj\Release\netcoreapp3.1\
 D:\TRANSFER ASUS\CS296\Lab04\CS296Labs\IvanCastronuno\obj\Release\netcoreapp3.1\IvanCastronuno.pdb
 D:\TRANSFER ASUS\CS296\Lab04\CS296Labs\IvanCastronuno\obj\Release\netcoreapp3.1\IvanCastronuno.genruntimeconfig.cache
 D:\TRANSFER ASUS\CS296\Lab04\CS296Labs\IvanCastronuno\obj\Release\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs
+D:\TRANSFER ASUS\CS296\Lab04\CS296Labs\IvanCastronuno\obj\Release\netcoreapp3.1\Razor\Views\Account\AccessDenied.cshtml.g.cs

@@ -68,7 +68,8 @@ namespace IvanCastronuno
 
             app.UseRouting();
             app.UseAuthentication(); // ADDED for indentity
-            app.UseAuthorization();           
+            app.UseAuthorization();
+            StoryContext.CreateAdminUser(app.ApplicationServices).Wait();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

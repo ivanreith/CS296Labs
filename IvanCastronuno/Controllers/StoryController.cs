@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using IvanCastronuno.Models;
 using IvanCastronuno.Repositories;
 using Microsoft.AspNetCore.Identity;
 
-using Microsoft.AspNetCore.Authorization;
 
 namespace IvanCastronuno.Controllers
 {
+    
     public class StoryController : Controller
     {
         // StoryContext c,  Context = c; ==>> Now using the repo for the most part
@@ -36,7 +36,7 @@ namespace IvanCastronuno.Controllers
                 return View("Edit", story);// new StoriesModelForm() 
            
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -48,7 +48,7 @@ namespace IvanCastronuno.Controllers
             return View(story);
         }
 
-      
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Edit(StoriesModelForm story)
         {
@@ -81,7 +81,7 @@ namespace IvanCastronuno.Controllers
                 return View(story);
             }
         }
-
+        [Authorize]
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -89,7 +89,7 @@ namespace IvanCastronuno.Controllers
             var story = Context.Story.Find(id);
             return View(story);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Delete(StoriesModelForm story)
         {

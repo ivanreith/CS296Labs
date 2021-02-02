@@ -88,5 +88,9 @@ namespace IvanCastronuno.Controllers
         {
             return View();
         }
+        public ViewResult AccessDenied()
+        {
+            return View();
+        }
     }
 }
