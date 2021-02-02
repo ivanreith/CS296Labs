@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using IvanCastronuno.Models;
 using Microsoft.EntityFrameworkCore;
+using IvanCastronuno.Repositories;
 
 namespace IvanCastronuno.Controllers
 {
@@ -20,18 +21,23 @@ namespace IvanCastronuno.Controllers
         }*/// keep that part just in case
         // Start database adding stuff
         private StoryContext Context { get; set; }
-
-        public HomeController(StoryContext ctx)
+        IStories Repo;
+        public HomeController(IStories r, StoryContext ctx)
         {
+            Repo = r;
             Context = ctx;
         }
 
         public IActionResult Stories()
         {
-            List<StoriesModelForm> stories = Context.Story.Include(m => m.Poster)
-                .OrderBy(m => m.StoryTopic).ToList();
+
+            List<StoriesModelForm> stories = Repo.stories.ToList<StoriesModelForm>();
+
             return View(stories);
-            
+            /*  List<StoriesModelForm> stories = Context.Story.Include(m => m.Poster)
+                .OrderBy(m => m.StoryTopic).ToList();
+            return View(stories);*/ // = > moved due to repository
+
         }
         // End database adding stuff 
         

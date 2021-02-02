@@ -12,7 +12,7 @@
         <tr><th>Username</th><th>Roles</th><th></th><th></th><th></th></tr>
     </thead>
     <tbody>
-        @if (Model.Users.Count() == 0)
+        @if (Model.Users == null)
         {
             <tr><td colspan="5">There are no user accounts.</td></tr>
         }
