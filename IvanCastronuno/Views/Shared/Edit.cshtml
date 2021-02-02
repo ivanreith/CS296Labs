@@ -44,10 +44,11 @@
                 }
             </select>
         </div>  Removed due to identity, grabbing user from the User.identity
+      ++++  That was to select the user from a drop down box , now is not in use.  ++++++
     *@
 
 
-    <input type="hidden" asp-for="StoryID" value="0" />
+    <input type="hidden" asp-for="StoryID" value=@Model.StoryID />
 
     <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
     <a asp-controller="Home" asp-action="Stories"

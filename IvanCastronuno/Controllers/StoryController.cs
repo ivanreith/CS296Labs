@@ -48,7 +48,7 @@ namespace IvanCastronuno.Controllers
             return View(story);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost]
         public IActionResult Edit(StoriesModelForm story)
         {

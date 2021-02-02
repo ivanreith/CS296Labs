@@ -4,14 +4,16 @@ using IvanCastronuno.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IvanCastronuno.Migrations
 {
     [DbContext(typeof(StoryContext))]
-    partial class StoryContextModelSnapshot : ModelSnapshot
+    [Migration("20210202024612_seedless")]
+    partial class seedless
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
