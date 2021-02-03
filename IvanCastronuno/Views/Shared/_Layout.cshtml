@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -37,7 +38,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Sources" asp-action="SourcesIndex">Sources</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Admin</a>
+                        </li>
                         @if (sigInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
@@ -56,10 +59,10 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogIn">LogIn</a>
                             </li>
                         }
-
-
+                        
+                    
                     </ul>
-                   
+
                 </div>
             </div>
         </nav>
@@ -69,6 +72,10 @@
             @RenderBody()
         </main>
     </div>
+    <br />
+    <br />
+    <br />
+
 
     <footer class="border-top footer text-muted">
         <div class="container">

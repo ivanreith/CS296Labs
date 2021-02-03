@@ -68,13 +68,15 @@ namespace IvanCastronuno
 
             app.UseRouting();
             app.UseAuthentication(); // ADDED for indentity
-            app.UseAuthorization();           
+            app.UseAuthorization();
+          
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
             });
+            StoryContext.CreateAdminUser(app.ApplicationServices).Wait();
         }
     }
 }

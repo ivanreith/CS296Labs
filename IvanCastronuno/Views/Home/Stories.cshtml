@@ -25,7 +25,14 @@
             <td>@story.StoryTitle</td>
             <td>@story.StoryTopic</td>
             <td>@story.StoryText</td>
-            <td>@story.Poster.Name</td>
+            @if (story.Poster.Name != null)
+            {
+                <td>@story.Poster.Name</td>
+            }
+            else 
+            {
+                <td>Story without user</td>
+            }
             <td>@story.StoryTime</td>
             <td>
                 <a asp-controller="Story" asp-action="Edit"
