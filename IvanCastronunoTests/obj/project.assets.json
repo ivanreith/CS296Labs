@@ -8850,11 +8850,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TRANSFER ASUS\\CS296\\Lab04\\CS296Labs\\IvanCastronunoTests\\IvanCastronunoTests.csproj",
+      "projectUniqueName": "D:\\TRANSFER ASUS\\CS296\\Lab05\\CS296Labs\\IvanCastronunoTests\\IvanCastronunoTests.csproj",
       "projectName": "IvanCastronunoTests",
-      "projectPath": "D:\\TRANSFER ASUS\\CS296\\Lab04\\CS296Labs\\IvanCastronunoTests\\IvanCastronunoTests.csproj",
+      "projectPath": "D:\\TRANSFER ASUS\\CS296\\Lab05\\CS296Labs\\IvanCastronunoTests\\IvanCastronunoTests.csproj",
       "packagesPath": "C:\\Users\\ivanr\\.nuget\\packages\\",
-      "outputPath": "D:\\TRANSFER ASUS\\CS296\\Lab04\\CS296Labs\\IvanCastronunoTests\\obj\\",
+      "outputPath": "D:\\TRANSFER ASUS\\CS296\\Lab05\\CS296Labs\\IvanCastronunoTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ivanr\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8871,8 +8871,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\TRANSFER ASUS\\CS296\\Lab04\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj": {
-              "projectPath": "D:\\TRANSFER ASUS\\CS296\\Lab04\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj"
+            "D:\\TRANSFER ASUS\\CS296\\Lab05\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj": {
+              "projectPath": "D:\\TRANSFER ASUS\\CS296\\Lab05\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj"
             }
           }
         }

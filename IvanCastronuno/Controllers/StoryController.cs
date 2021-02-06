@@ -103,5 +103,27 @@ namespace IvanCastronuno.Controllers
 
                 return View(stories);
         }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Comment()
+        {
+            return View();
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Comment(CommentModel comment)
+        {
+
+            comment.Commenter = userManager.GetUserAsync(User).Result;
+            comment.Commenter.Name = comment.Commenter.UserName;
+            comment.CommentDate = DateTime.Now;
+
+            return View(comment);
+
+        }
+
     }
 }

@@ -41,6 +41,9 @@
                 <a asp-controller="Story" asp-action="Delete"
                    asp-route-id="@story.StoryID"
                    asp-route-slug="@story.Slug">Delete</a>
+                <a asp-controller="Story" asp-action="Comment"
+                   asp-route-id="@story.StoryID"
+                   asp-route-slug="@story.Slug">Comment</a>
             </td>
         </tr>
             }

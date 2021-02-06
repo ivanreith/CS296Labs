@@ -20,7 +20,7 @@ namespace IvanCastronuno.Models
         public StoryContext(DbContextOptions<StoryContext> options)
             : base(options)
         { }
-
+        public DbSet<CommentModel> Comments { get; set; }
         public DbSet<StoriesModelForm> Story { get; set; }
         public DbSet<AppUser> AppUser { get; set; } //REmoved due to Identity inheritance, parent class would do it
 

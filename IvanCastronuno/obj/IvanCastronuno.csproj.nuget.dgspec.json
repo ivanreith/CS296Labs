@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TRANSFER ASUS\\CS296\\Lab04\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj": {}
+    "D:\\TRANSFER ASUS\\CS296\\Lab05\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj": {}
   },
   "projects": {
-    "D:\\TRANSFER ASUS\\CS296\\Lab04\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj": {
+    "D:\\TRANSFER ASUS\\CS296\\Lab05\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TRANSFER ASUS\\CS296\\Lab04\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj",
+        "projectUniqueName": "D:\\TRANSFER ASUS\\CS296\\Lab05\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj",
         "projectName": "IvanCastronuno",
-        "projectPath": "D:\\TRANSFER ASUS\\CS296\\Lab04\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj",
+        "projectPath": "D:\\TRANSFER ASUS\\CS296\\Lab05\\CS296Labs\\IvanCastronuno\\IvanCastronuno.csproj",
         "packagesPath": "C:\\Users\\ivanr\\.nuget\\packages\\",
-        "outputPath": "D:\\TRANSFER ASUS\\CS296\\Lab04\\CS296Labs\\IvanCastronuno\\obj\\",
+        "outputPath": "D:\\TRANSFER ASUS\\CS296\\Lab05\\CS296Labs\\IvanCastronuno\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ivanr\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using IvanCastronuno.Models;
 using Microsoft.EntityFrameworkCore;
 using IvanCastronuno.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IvanCastronuno.Controllers
 {
@@ -79,5 +80,6 @@ namespace IvanCastronuno.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+      
     }
 }

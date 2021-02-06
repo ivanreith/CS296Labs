@@ -14,8 +14,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "sqlDebugging": false,
-      "ancmHostingModel": "OutOfProcess"
+      "sqlDebugging": false
     },
     "IvanCastronuno": {
       "commandName": "Project",

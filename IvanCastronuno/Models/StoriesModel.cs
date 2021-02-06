@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace IvanCastronuno.Models
@@ -8,7 +9,7 @@ namespace IvanCastronuno.Models
 
     public class StoriesModelForm
     {
-
+        private List<CommentModel> comments = new List<CommentModel>();
         // EF Core will configure the database to generate this value
         [Key]
         public int StoryID { get; set; }
@@ -29,6 +30,9 @@ namespace IvanCastronuno.Models
         public AppUser Poster { get; set; }       
         
         public DateTime StoryTime { get; set; }
+        public List<CommentModel> Comments {
+            get { return comments; }
+        }
 
         public string Slug =>
          StoryTitle?.Replace(' ', '-').ToLower() + '-' + StoryTopic?.ToString();
