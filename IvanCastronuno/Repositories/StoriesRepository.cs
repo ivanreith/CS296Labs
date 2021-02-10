@@ -1,9 +1,14 @@
 ﻿using IvanCastronuno.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
+
 //, StoriesRepository r  //      repo = r;
 
 namespace IvanCastronuno.Repositories
@@ -17,39 +22,44 @@ namespace IvanCastronuno.Repositories
         { 
                 context = c;
           
-            }
+        }
 
 
         public IQueryable<StoriesModelForm> stories
         {
             get 
             {
-              return context.Stories.Include(stories => stories.Poster);
+                return context.Story.Include(stories => stories.Poster)
+                                    .Include(stories => stories.Comments )
+                                    .ThenInclude(comment => comment.Commenter);
             }
         }
-
-        public void AddStory(StoriesModelForm stories)
+        
+        public void AddStory(StoriesModelForm story)
         {
-            context.Stories.Add(stories);
+            story.StoryTime = DateTime.Now;
+             // TODO add the actual logged in user example string userName = User.Identity.Name
+            context.Story.Add(story);
             context.SaveChanges();
         }
 
-        public void DeleteStory(StoriesModelForm stories)
+        public void DeleteStory(StoriesModelForm story)
         {
-            context.Stories.Remove(stories);
+            context.Story.Remove(story);
             context.SaveChanges();
         }
 
         public StoriesModelForm GetStoryById(int StoryId)
         {
             //throw new NotImplementedException();
-            var story = context.Stories.Find(StoryId);
+            var story = context.Story.Find(StoryId);
             return story;
         }
 
-        public void UpdateStory(StoriesModelForm stories)
+        public void UpdateStory(StoriesModelForm story)
         {
-            context.Stories.Update(stories);
+
+            context.Story.Update(story);
             context.SaveChanges();
         }
     }

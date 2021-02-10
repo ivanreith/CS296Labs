@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="D:\TRANSFER ASUS\CS295N\WEEK6\CS295N-Icastronuno\IvanCastronuno\obj\Release\netcoreapp3.1\PubTmp\Out\" />
-  <dbfullsql path="D:\TRANSFER ASUS\CS295N\WEEK6\CS295N-Icastronuno\IvanCastronuno\obj\Release\netcoreapp3.1\PubTmp\EFSQLScripts\IvanCastronuno.Models.StoryContext.sql" />
+  <IisApp path="D:\TRANSFER ASUS\CS296\Lab04\CS296Labs\IvanCastronuno\obj\Release\netcoreapp3.1\PubTmp\Out\" />
+  <dbfullsql path="D:\TRANSFER ASUS\CS296\Lab04\CS296Labs\IvanCastronuno\obj\Release\netcoreapp3.1\PubTmp\EFSQLScripts\IvanCastronuno.Models.StoryContext.sql" />
 </sitemanifest>
