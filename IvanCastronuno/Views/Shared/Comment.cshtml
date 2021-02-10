@@ -1,0 +1,34 @@
+﻿@model CommentViewModel
+@{
+    ViewData["Title"] = "Comment";
+}
+
+<h1>Add a Comment</h1>
+
+@{
+    string title = ViewBag.Action + " Story";
+    ViewBag.Title = title;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form asp-action="Comment" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="CommentText">Add your comment here:</label>
+        <input asp-for="CommentText" class="form-control">
+        <span asp-validation-for="CommentText" class="text-danger"></span>
+    </div>
+
+
+
+
+    <button type="submit" class="btn btn-primary">@ViewBag.Title</button>
+    <a asp-controller="Home" asp-action="Stories"
+       class="btn btn-primary">Cancel</a>
+    <input type="hidden" asp-for="StoryID" />
+</form>
+@*  <input type="hidden" asp-for="Name" value=@User.Identity.Name />  removed from the story model
+    <input type="hidden" asp-for=" storyId" value=@Model.CommentId />
+     <input type="hidden" asp-for="StoryID" value=@ />*@

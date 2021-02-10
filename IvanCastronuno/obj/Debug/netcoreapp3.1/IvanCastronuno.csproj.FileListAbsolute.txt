@@ -1284,4 +1284,4 @@ D:\TRANSFER ASUS\CS296\Lab05\CS296Labs\IvanCastronuno\obj\Debug\netcoreapp3.1\Iv
 D:\TRANSFER ASUS\CS296\Lab05\CS296Labs\IvanCastronuno\obj\Debug\netcoreapp3.1\IvanCastronuno.dll
 D:\TRANSFER ASUS\CS296\Lab05\CS296Labs\IvanCastronuno\obj\Debug\netcoreapp3.1\IvanCastronuno.pdb
 D:\TRANSFER ASUS\CS296\Lab05\CS296Labs\IvanCastronuno\obj\Debug\netcoreapp3.1\IvanCastronuno.genruntimeconfig.cache
-D:\TRANSFER ASUS\CS296\Lab05\CS296Labs\IvanCastronuno\obj\Debug\netcoreapp3.1\Razor\Views\Home\Comment.cshtml.g.cs
+D:\TRANSFER ASUS\CS296\Lab05\CS296Labs\IvanCastronuno\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Comment.cshtml.g.cs

@@ -58,16 +58,15 @@ namespace IvanCastronuno.Controllers
                 {
                     story.Poster = userManager.GetUserAsync(User).Result;
                     story.Poster.Name = story.Poster.UserName;
-                    // story.Name = User.Identity.Name;  field removed from story model
-                    // story.Poster.Name = User.Identity.Name;
+                    story.StoryTime = DateTime.Now;
                     Repo.AddStory(story);
                 }
                 
                 else
                 {
                     story.Poster = userManager.GetUserAsync(User).Result;
-                    story.Poster.Name = story.Poster.UserName; // temporary fix
-                    //  story.Name = story.Poster.UserName;
+                    story.Poster.Name = story.Poster.UserName;
+                    story.StoryTime = DateTime.Now;
                     Repo.UpdateStory(story);
                     return RedirectToAction("Stories", "Home");
                 }
@@ -81,7 +80,7 @@ namespace IvanCastronuno.Controllers
                 return View(story);
             }
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -106,22 +105,31 @@ namespace IvanCastronuno.Controllers
 
         [Authorize]
         [HttpGet]
-        public IActionResult Comment()
+        public IActionResult Comment(int id)
         {
-            return View();
+            ViewBag.Action = "Comment";
+            var commentViewModel = new CommentViewModel { StoryID = id };
+            return View(commentViewModel);
         }
 
 
         [Authorize]
         [HttpPost]
-        public IActionResult Comment(CommentModel comment)
+        public RedirectToActionResult Comment(CommentViewModel commentViewModel)
         {
+            // here we pass the data from the view into the new real model for the DB
+            var comment = new CommentModel { CommentText = commentViewModel.CommentText };
 
-            comment.Commenter = userManager.GetUserAsync(User).Result;
-            comment.Commenter.Name = comment.Commenter.UserName;
+            comment.Commenter = userManager.GetUserAsync(User).Result;          
             comment.CommentDate = DateTime.Now;
-
-            return View(comment);
+            // Now we start working on the DB:
+            var story = (from s in Repo.stories
+                         where s.StoryID == commentViewModel.StoryID
+                         select s).FirstOrDefault<StoriesModelForm>();  // after first supposed to go <StoriesModelForm> but visual says it can be omitted.
+            //  now adding the comment to the story object variable that we've retrieved:
+            story.Comments.Add(comment);
+            Repo.UpdateStory(story);
+            return RedirectToAction("Stories", "Home");
 
         }
 

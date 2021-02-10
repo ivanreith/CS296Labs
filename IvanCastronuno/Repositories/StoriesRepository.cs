@@ -29,7 +29,9 @@ namespace IvanCastronuno.Repositories
         {
             get 
             {
-              return context.Story.Include(stories => stories.Poster);
+                return context.Story.Include(stories => stories.Poster)
+                                    .Include(stories => stories.Comments )
+                                    .ThenInclude(comment => comment.Commenter);
             }
         }
         
@@ -56,7 +58,7 @@ namespace IvanCastronuno.Repositories
 
         public void UpdateStory(StoriesModelForm story)
         {
-            story.StoryTime = DateTime.Now;
+
             context.Story.Update(story);
             context.SaveChanges();
         }

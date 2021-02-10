@@ -30,7 +30,9 @@ namespace IvanCastronuno.Models
         public AppUser Poster { get; set; }       
         
         public DateTime StoryTime { get; set; }
-        public List<CommentModel> Comments {
+
+        public List<CommentModel> Comments
+        {
             get { return comments; }
         }
 
