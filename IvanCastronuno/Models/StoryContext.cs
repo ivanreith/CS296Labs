@@ -4,10 +4,14 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Channels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace IvanCastronuno.Models
 {
-    public class StoryContext : DbContext
+    public class StoryContext : IdentityDbContext
     {
         public StoryContext()
         {
@@ -16,51 +20,37 @@ namespace IvanCastronuno.Models
         public StoryContext(DbContextOptions<StoryContext> options)
             : base(options)
         { }
+        public DbSet<CommentModel> Comments { get; set; }
+        public DbSet<StoriesModelForm> Story { get; set; }
+        public DbSet<AppUser> AppUser { get; set; } //REmoved due to Identity inheritance, parent class would do it
 
-        public DbSet<StoriesModelForm> Stories { get; set; }
-        public DbSet<User> User { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public static async Task CreateAdminUser(IServiceProvider serviceProvider)
         {
-            modelBuilder.Entity<User>().HasData(
-                 new User { UserId = "1", UserName = "Johnny" },
-                 new User { UserId = "2", UserName = "Tommy" },
-                 new User { UserId = "3", UserName = "Danny" },
-                 new User { UserId = "4", UserName = "Mannly" },
-                 new User { UserId = "5", UserName = "Conny" },
-                 new User { UserId = "6", UserName = "Sunny" },
-                 new User { UserId = "7", UserName = "Diandra" }
-             );
-
-            modelBuilder.Entity<StoriesModelForm>().HasData(
-                new StoriesModelForm
+            UserManager<AppUser> userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
+            RoleManager<IdentityRole> roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            string username = "admin";
+            string password = "Sesame@1";
+            string roleName = "Admin";
+            // Creating the role the first time
+            if (await roleManager.FindByNameAsync(roleName)== null)
+            {
+                await roleManager.CreateAsync(new IdentityRole(roleName));
+            }
+            // creating the username the first time and adding it to the role
+            if (await userManager.FindByNameAsync(username) == null)
+            {
+                AppUser user = new AppUser { UserName = username };
+                var result = await userManager.CreateAsync(user, password);
+                if (result.Succeeded)
                 {
-                    StoryID = 1,
-                    StoryTitle = "Viaje",
-                    StoryTopic = "Travel",
-                    StoryText = "To do a travel wearing armor isn't fun",
-                    UserId = "1",
-                 
-                },
-                new StoriesModelForm
-                {
-                    StoryID = 2,
-                    StoryTitle = "Crafting",
-                    StoryTopic = "Use instructions",
-                    StoryText = "To redo your costume three times for not follow the instructions is a common noob mistake.",
-                    UserId = "6",
-                   
-                },
-                new StoriesModelForm
-                {
-                    StoryID = 3,
-                    StoryTitle = "Food",
-                    StoryTopic = "Find friends",
-                    StoryText = "When on a recreation , if u have food , you'll find friends",
-                    UserId = "7",
-                   
+                    await userManager.AddToRoleAsync(user, roleName);
                 }
-            );
+
+            }
+
         }
+
+     
+        
     }
 }

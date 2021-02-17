@@ -6,28 +6,30 @@ using System.Threading.Channels;
 using IvanCastronuno.Models;
 using IvanCastronuno.Repositories;
 using IvanCastronuno.Controllers;
+using Microsoft.AspNetCore.Identity;
 
 namespace IvanCastronunoTests
 {
     public class StoriesRepoTest
     {
         StoryContext Context { get; set; }
-
-
-    [Fact]
+        UserManager<AppUser> userManager;
+        
+        [Fact]
         public void AddStoryTest()
         {
             //Arrange
             var c = new StoryContext();
+           
             var fakeRepo = new FakeStoriesRepository();
-            var controller = new StoryController(fakeRepo, c);
+            var controller = new StoryController(fakeRepo, c, userManager);
             var Story = new StoriesModelForm()
             {
                 StoryID = 0,
                 StoryTitle = "Mannly" ,
                StoryTopic = "FAKE REPO TEST",
                StoryText = "more for testing the repo fake",
-               Poster = new User() { UserId = "99", UserName = "Testing user99"},
+               Poster = new AppUser() {Name = "Testing user99"},
 
              };
             //Act
@@ -45,14 +47,14 @@ namespace IvanCastronunoTests
             //Arrange
             var c = new StoryContext();
             var fakeRepo = new FakeStoriesRepository();
-            var controller = new StoryController(fakeRepo,c);
+            var controller = new StoryController(fakeRepo,c, userManager);
             var Story = new StoriesModelForm()
             {
                 StoryID = 0,
                 StoryTitle = "Mannly",
                 StoryTopic = "FAKE REPO TEST",
                 StoryText = "more for testing the repo fake",
-                Poster = new User() { UserId = "99", UserName = "Testing user99" },
+                Poster = new AppUser() {Name = "Testing user99" },
 
             };
             //Act
@@ -70,14 +72,14 @@ namespace IvanCastronunoTests
             //Arrange
             var c = new StoryContext();
             var fakeRepo = new FakeStoriesRepository();
-            var controller = new StoryController(fakeRepo, c);
+            var controller = new StoryController(fakeRepo, c, userManager);
             var Story = new StoriesModelForm()
             {
                 StoryID = 0,
                 StoryTitle = "Mannly",
                 StoryTopic = "FAKE REPO TEST",
                 StoryText = "more for testing the repo fake",
-                Poster = new User() { UserId = "99", UserName = "Testing user99" },
+                Poster = new AppUser() {Name = "Testing user99" },
 
             };
             var Story2 = new StoriesModelForm()
@@ -86,7 +88,7 @@ namespace IvanCastronunoTests
                 StoryTitle = "Test2",
                 StoryTopic = "FAKE REPO TEST2",
                 StoryText = "more for testing the repo fake",
-                Poster = new User() { UserId = "99", UserName = "Testing user99" },
+                Poster = new AppUser() {Name = "Testing user99" },
 
             };
             var Story3 = new StoriesModelForm()
@@ -95,7 +97,7 @@ namespace IvanCastronunoTests
                 StoryTitle = "Test3",
                 StoryTopic = "FAKE REPO TEST3",
                 StoryText = "more for testing the repo fake",
-                Poster = new User() { UserId = "99", UserName = "Testing user99" },
+                Poster = new AppUser() {Name = "Testing user99" },
 
             };
             //Act
@@ -115,14 +117,14 @@ namespace IvanCastronunoTests
             //Arrange
             var c = new StoryContext();
             var fakeRepo = new FakeStoriesRepository();
-            var controller = new StoryController(fakeRepo, c);
+            var controller = new StoryController(fakeRepo, c , userManager);
             var Story = new StoriesModelForm()
             {
                 StoryID = 0,
                 StoryTitle = "Mannly",
                 StoryTopic = "FAKE REPO TEST",
                 StoryText = "more for testing the repo fake",
-                Poster = new User() { UserId = "99", UserName = "Testing user99" },
+                Poster = new AppUser() {Name = "Testing user99" },
 
             };
             //Act
