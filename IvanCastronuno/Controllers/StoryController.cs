@@ -108,7 +108,7 @@ namespace IvanCastronuno.Controllers
         public IActionResult Comment(int id)
         {
             var story = Context.Story.Find(id); // those 2 lines added to validate id, so no OS command injection on id hidden field
-            if (story.StoryID > 1000)
+            if (story != null)
             {
                 ViewBag.Action = "Comment";
                 var commentViewModel = new CommentViewModel { StoryID = id };
@@ -134,10 +134,12 @@ namespace IvanCastronuno.Controllers
                              where s.StoryID == commentViewModel.StoryID
                              select s).FirstOrDefault<StoriesModelForm>();  // after first supposed to go <StoriesModelForm> but visual says it can be omitted.
                                                                             //  now adding the comment to the story object variable that we've retrieved:        
-
-                story.Comments.Add(comment);
-                Repo.UpdateStory(story);
-                return RedirectToAction("Stories", "Home");
+                if (story != null)
+                {
+                    story.Comments.Add(comment);
+                    Repo.UpdateStory(story);
+                    return RedirectToAction("Stories", "Home");
+                }
             }
             else
             {
@@ -145,7 +147,7 @@ namespace IvanCastronuno.Controllers
                 return RedirectToAction("Stories", "Home");
             }
 
-
+            return RedirectToAction("Stories", "Home");
 
         }
     }
