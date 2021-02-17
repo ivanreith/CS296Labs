@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using IvanCastronuno.Models;
 using IvanCastronuno.Repositories;
@@ -37,7 +39,9 @@ namespace IvanCastronuno
 
             services.AddTransient<IStories, StoriesRepository>(); // repository Interface then repo class
             //services.AddTransient<UserRepository, UsersRepository>();
-
+            services.AddSingleton<HtmlEncoder>(
+             HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin,
+                                               UnicodeRanges.CjkUnifiedIdeographs }));  // added for security, XSS
 
             services.AddControllersWithViews();
             services.AddDbContext<StoryContext>(options => options.UseSqlServer(
@@ -63,6 +67,15 @@ namespace IvanCastronuno
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+                context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");// added for x-frame options header not set error
+                await next();
+            });
+
+           //app.UseMvc(); not supported while using end point.. 
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

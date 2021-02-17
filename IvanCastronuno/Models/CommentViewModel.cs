@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 namespace IvanCastronuno.Models
 {
     public class CommentViewModel
-    {
+    {   
+        [Required]
         public int StoryID { get; set; }
-       public string StoryTopic { get; set; }
+        [Required]
+         public string StoryTopic { get; set; }
+        [Required]
         public string CommentText { get; set; }
        
     }

@@ -45,13 +45,28 @@ namespace IvanCastronuno.Repositories
 
         public void DeleteStory(StoriesModelForm story)
         {
-            context.Story.Remove(story);
+         
+         var comments = context.Comments.ToList();
+            foreach (CommentModel comment in comments) // added to delete all comments of a story before deleting the story
+            {
+                foreach (CommentModel storycomment in story.Comments)
+                {
+                    if (comment.CommentId == storycomment.CommentId)
+                    {
+                        context.Comments.Remove(comment);
+                        context.SaveChanges();
+                    }
+                }
+            }
+            
+               
+                context.Story.Remove(story);
             context.SaveChanges();
         }
 
         public StoriesModelForm GetStoryById(int StoryId)
         {
-            //throw new NotImplementedException();
+           
             var story = context.Story.Find(StoryId);
             return story;
         }

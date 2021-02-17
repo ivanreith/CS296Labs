@@ -10,16 +10,16 @@ using Microsoft.AspNetCore.Identity;
 
 namespace IvanCastronuno.Controllers
 {
-    
+
     public class StoryController : Controller
     {
         // StoryContext c,  Context = c; ==>> Now using the repo for the most part
         IStories Repo;
-       StoryContext Context { get; set; }
+        StoryContext Context { get; set; }
         UserManager<AppUser> userManager;
         public StoryController(IStories r, StoryContext c, UserManager<AppUser> u)
         {
-           Context = c;
+            Context = c;
             Repo = r;
             userManager = u;
         }
@@ -27,14 +27,14 @@ namespace IvanCastronuno.Controllers
         [HttpGet]
         public IActionResult Add()  //StoriesModelForm story  => it doesn't need the object , it's empty
         {
-         
-               var story = new StoriesModelForm();
-               // story.Name = User.Identity.Name; field removed from story model
-                story.StoryID = 0;
-                ViewBag.Action = "Add";
-                ViewBag.Users = Context.AppUser.OrderBy(g => g.Name).ToList();
-                return View("Edit", story);// new StoriesModelForm() 
-           
+
+            var story = new StoriesModelForm();
+            // story.Name = User.Identity.Name; field removed from story model
+            story.StoryID = 0;
+            ViewBag.Action = "Add";
+            ViewBag.Users = Context.AppUser.OrderBy(g => g.Name).ToList();
+            return View("Edit", story);// new StoriesModelForm() 
+
         }
         [Authorize]
         [HttpGet]
@@ -43,8 +43,8 @@ namespace IvanCastronuno.Controllers
             ViewBag.Action = "Edit";
             ViewBag.Users = Context.AppUser.OrderBy(g => g.Name).ToList();
             var story = Repo.GetStoryById(id);
-           
-          //  var story = Context.Story.Find(id);
+
+            //  var story = Context.Story.Find(id);
             return View(story);
         }
 
@@ -61,7 +61,7 @@ namespace IvanCastronuno.Controllers
                     story.StoryTime = DateTime.Now;
                     Repo.AddStory(story);
                 }
-                
+
                 else
                 {
                     story.Poster = userManager.GetUserAsync(User).Result;
@@ -84,7 +84,7 @@ namespace IvanCastronuno.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            
+
             var story = Context.Story.Find(id);
             return View(story);
         }
@@ -100,16 +100,21 @@ namespace IvanCastronuno.Controllers
 
             List<StoriesModelForm> stories = Repo.stories.ToList<StoriesModelForm>();
 
-                return View(stories);
+            return View(stories);
         }
 
         [Authorize]
         [HttpGet]
         public IActionResult Comment(int id)
         {
-            ViewBag.Action = "Comment";
-            var commentViewModel = new CommentViewModel { StoryID = id };
-            return View(commentViewModel);
+            var story = Context.Story.Find(id); // those 2 lines added to validate id, so no OS command injection on id hidden field
+            if (story.StoryID > 1000)
+            {
+                ViewBag.Action = "Comment";
+                var commentViewModel = new CommentViewModel { StoryID = id };
+                return View(commentViewModel);
+            }
+            return RedirectToAction("Stories", "Home");
         }
 
 
@@ -117,21 +122,31 @@ namespace IvanCastronuno.Controllers
         [HttpPost]
         public RedirectToActionResult Comment(CommentViewModel commentViewModel)
         {
+
             // here we pass the data from the view into the new real model for the DB
             var comment = new CommentModel { CommentText = commentViewModel.CommentText };
+            if (commentViewModel.StoryID > 1000 && commentViewModel.CommentText != null) // to check if it got to this point empty, ZAP testing
+            {
+                comment.Commenter = userManager.GetUserAsync(User).Result;
+                comment.CommentDate = DateTime.Now;
+                // Now we start working on the DB:
+                var story = (from s in Repo.stories
+                             where s.StoryID == commentViewModel.StoryID
+                             select s).FirstOrDefault<StoriesModelForm>();  // after first supposed to go <StoriesModelForm> but visual says it can be omitted.
+                                                                            //  now adding the comment to the story object variable that we've retrieved:        
 
-            comment.Commenter = userManager.GetUserAsync(User).Result;          
-            comment.CommentDate = DateTime.Now;
-            // Now we start working on the DB:
-            var story = (from s in Repo.stories
-                         where s.StoryID == commentViewModel.StoryID
-                         select s).FirstOrDefault<StoriesModelForm>();  // after first supposed to go <StoriesModelForm> but visual says it can be omitted.
-            //  now adding the comment to the story object variable that we've retrieved:
-            story.Comments.Add(comment);
-            Repo.UpdateStory(story);
-            return RedirectToAction("Stories", "Home");
+                story.Comments.Add(comment);
+                Repo.UpdateStory(story);
+                return RedirectToAction("Stories", "Home");
+            }
+            else
+            {
+              
+                return RedirectToAction("Stories", "Home");
+            }
+
+
 
         }
-
     }
 }
