@@ -14,6 +14,8 @@ namespace IvanCastronuno.Models
          public string StoryTopic { get; set; }
         [Required]
         public string CommentText { get; set; }
+
+        public string CommenterName { get; set; } // if not authenticated user
        
     }
 }

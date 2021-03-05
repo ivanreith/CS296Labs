@@ -10,6 +10,7 @@ namespace IvanCastronuno.Models
     {
         [Key]
         public int CommentId { get; set; }
+        public int StoriesModelFormStoryID { get; set; }
         [Required]
         public string CommentText { get; set; }
         public DateTime CommentDate { get; set; }

@@ -31,6 +31,21 @@ namespace IvanCastronuno.Repositories
           Stories.Remove(stories);
         }
 
+        public CommentModel GetCommentById(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CommentModel> GetComments()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CommentModel> GetCommentsByStory(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public StoriesModelForm GetStoryById(int Id)
         {
           foreach(StoriesModelForm Story in Stories)

@@ -14,7 +14,7 @@ namespace IvanCastronuno.Controllers
     public class StoryController : Controller
     {
         // StoryContext c,  Context = c; ==>> Now using the repo for the most part
-        IStories Repo;
+        IStories Repo { get;  set; }
         StoryContext Context { get; set; }
         UserManager<AppUser> userManager;
         public StoryController(IStories r, StoryContext c, UserManager<AppUser> u)

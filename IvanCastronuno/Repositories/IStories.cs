@@ -15,5 +15,8 @@ namespace IvanCastronuno.Repositories
         StoriesModelForm GetStoryById(int StoryId); //Retrieve a story by topic
         void UpdateStory(StoriesModelForm stories);
         void DeleteStory(StoriesModelForm stories);
+        List<CommentModel> GetCommentsByStory(int Id);
+        List<CommentModel> GetComments();
+        CommentModel GetCommentById(int Id);
     }
 }

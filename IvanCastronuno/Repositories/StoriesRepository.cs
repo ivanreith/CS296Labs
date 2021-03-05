@@ -25,6 +25,7 @@ namespace IvanCastronuno.Repositories
         }
 
 
+
         public IQueryable<StoriesModelForm> stories
         {
             get 
@@ -66,8 +67,12 @@ namespace IvanCastronuno.Repositories
 
         public StoriesModelForm GetStoryById(int StoryId)
         {
-           
-            var story = context.Story.Find(StoryId);
+
+            var story = (from s in context.Story
+                         where s.StoryID == StoryId
+                         select s).FirstOrDefault<StoriesModelForm>();
+
+           // var story = context.Story.Find(StoryId);
             return story;
         }
 
@@ -76,6 +81,44 @@ namespace IvanCastronuno.Repositories
 
             context.Story.Update(story);
             context.SaveChanges();
+        }
+   
+     public List<CommentModel> GetCommentsByStory(int StoryId)
+    {
+
+            List<CommentModel> comments = (from c in context.Comments
+                                           where c.StoriesModelFormStoryID == StoryId
+                                           select c).ToList();
+
+         /*   var story = (from s in context.Story
+                         where s.StoryID == StoryId
+                         select s).FirstOrDefault();
+            List<CommentModel> comments = new List<CommentModel>();
+            foreach (CommentModel c in story.Comments)
+            {
+                comments.Add(c);
+            }*/
+
+
+             return comments;
+            
+    }
+        public List<CommentModel> GetComments()
+        {
+            List<CommentModel> comments = (from c in context.Comments
+                                          
+                                           select c).ToList();
+
+            return comments;
+        }
+        public CommentModel GetCommentById(int Id)
+        {
+            
+            CommentModel comment = (from c in context.Comments
+                                     where c.CommentId == Id
+                                       select c).FirstOrDefault();
+
+            return comment;
         }
     }
 }

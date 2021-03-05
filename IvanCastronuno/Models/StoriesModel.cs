@@ -9,7 +9,7 @@ namespace IvanCastronuno.Models
 
     public class StoriesModelForm
     {
-        private List<CommentModel> comments = new List<CommentModel>();
+        public List<CommentModel> comments = new List<CommentModel>();
         // EF Core will configure the database to generate this value
         [Key]
         public int StoryID { get; set; }
