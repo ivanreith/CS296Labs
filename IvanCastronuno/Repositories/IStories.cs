@@ -18,5 +18,7 @@ namespace IvanCastronuno.Repositories
         List<CommentModel> GetCommentsByStory(int Id);
         List<CommentModel> GetComments();
         CommentModel GetCommentById(int Id);
+        void DeleteComment(CommentModel comment);
+        void UpdateComment(CommentModel comment);
     }
 }

@@ -64,7 +64,11 @@ namespace IvanCastronuno.Repositories
                 context.Story.Remove(story);
             context.SaveChanges();
         }
-
+        public void DeleteComment(CommentModel comment)
+        {
+            context.Comments.Remove(comment);
+            context.SaveChanges();
+        }
         public StoriesModelForm GetStoryById(int StoryId)
         {
 
@@ -82,7 +86,11 @@ namespace IvanCastronuno.Repositories
             context.Story.Update(story);
             context.SaveChanges();
         }
-   
+        public void UpdateComment(CommentModel comment)
+        {
+            context.Comments.Update(comment);
+            context.SaveChanges();
+        }
      public List<CommentModel> GetCommentsByStory(int StoryId)
     {
 
@@ -120,5 +128,7 @@ namespace IvanCastronuno.Repositories
 
             return comment;
         }
+
+       
     }
 }

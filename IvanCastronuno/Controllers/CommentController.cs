@@ -88,5 +88,35 @@ namespace IvanCastronuno.Controllers
             }
             return NotFound(Id);
         }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteComment(int Id)
+        {
+            CommentModel comment = Repo.GetCommentById(Id);
+            if (comment != null)
+            {
+                Repo.DeleteComment(comment);
+                return Ok(comment);
+            }
+            return NotFound(Id);
+           
+        }
+        [HttpPut("{id}")]
+        public IActionResult UpdateComment(int Id, CommentViewModel CommentVM)
+        {
+            if (CommentVM != null )
+            {
+                CommentModel comment = Repo.GetCommentById(Id);
+                comment.CommentDate = DateTime.Now;                
+                comment.CommentText = CommentVM.CommentText;
+             
+                Repo.UpdateComment(comment);
+
+                return Ok(comment);
+            }
+
+
+            return NotFound();
+        }
+
     }
 }

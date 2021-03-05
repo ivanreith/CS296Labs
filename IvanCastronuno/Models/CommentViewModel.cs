@@ -10,8 +10,7 @@ namespace IvanCastronuno.Models
     {   
         [Required]
         public int StoryID { get; set; }
-        [Required]
-         public string StoryTopic { get; set; }
+       
         [Required]
         public string CommentText { get; set; }
 

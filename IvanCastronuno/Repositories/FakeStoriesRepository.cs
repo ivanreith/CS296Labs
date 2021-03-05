@@ -26,6 +26,11 @@ namespace IvanCastronuno.Repositories
 
         }
 
+        public void DeleteComment(CommentModel comment)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteStory(StoriesModelForm stories)
         {
           Stories.Remove(stories);
@@ -60,6 +65,11 @@ namespace IvanCastronuno.Repositories
             // throw new NotImplementedException();
             //  StoriesModelForm storyRecovered = Story.Find(Id) ;  // This one gave me an type missmatch error
             //            return storyRecovered;
+        }
+
+        public void UpdateComment(CommentModel comment)
+        {
+            throw new NotImplementedException();
         }
 
         public void UpdateStory(StoriesModelForm stories)
