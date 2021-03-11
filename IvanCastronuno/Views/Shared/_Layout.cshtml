@@ -38,30 +38,33 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Sources" asp-action="SourcesIndex">Sources</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Admin</a>
-                        </li>
-                        @if (sigInManager.IsSignedIn(User))
+                        @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">LogOut</a>
-                                <span class="text-danger"> @User.Identity.Name</span>
-                            </li>
-
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogIn">LogIn</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Admin</a>
                             </li>
                         }
-                        
-                    
-                    </ul>
+                            @if (sigInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">LogOut</a>
+                                    <span class="text-danger"> @User.Identity.Name</span>
+                                </li>
+
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogIn">LogIn</a>
+                                </li>
+                            }
+
+
+                        </ul>
 
                 </div>
             </div>

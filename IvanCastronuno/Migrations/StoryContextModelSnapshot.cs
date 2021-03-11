@@ -37,7 +37,7 @@ namespace IvanCastronuno.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("StoriesModelFormStoryID")
+                    b.Property<int>("StoriesModelFormStoryID")
                         .HasColumnType("int");
 
                     b.HasKey("CommentId");
@@ -308,7 +308,9 @@ namespace IvanCastronuno.Migrations
 
                     b.HasOne("IvanCastronuno.Models.StoriesModelForm", null)
                         .WithMany("Comments")
-                        .HasForeignKey("StoriesModelFormStoryID");
+                        .HasForeignKey("StoriesModelFormStoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("IvanCastronuno.Models.StoriesModelForm", b =>

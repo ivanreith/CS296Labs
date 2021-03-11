@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+
 using Microsoft.AspNetCore.Mvc;
 using IvanCastronuno.Models;
 using IvanCastronuno.Repositories;
@@ -12,7 +13,8 @@ namespace IvanCastronuno.Controllers
 {
 
     public class StoryController : Controller
-    {
+    {              
+        private RoleManager<IdentityRole> roleManager;
         // StoryContext c,  Context = c; ==>> Now using the repo for the most part
         IStories Repo { get;  set; }
         StoryContext Context { get; set; }
@@ -120,12 +122,12 @@ namespace IvanCastronuno.Controllers
 
         [Authorize]
         [HttpPost]
-        public RedirectToActionResult Comment(CommentViewModel commentViewModel)
+        public IActionResult Comment(CommentViewModel commentViewModel)
         {
 
             // here we pass the data from the view into the new real model for the DB
             var comment = new CommentModel { CommentText = commentViewModel.CommentText };
-            if (commentViewModel.StoryID > 1000 && commentViewModel.CommentText != null) // to check if it got to this point empty, ZAP testing
+            if (commentViewModel != null) // to check if it got to this point empty, ZAP testing
             {
                 comment.Commenter = userManager.GetUserAsync(User).Result;
                 comment.CommentDate = DateTime.Now;

@@ -10,19 +10,20 @@ using System.Threading.Tasks;
 
 namespace IvanCastronuno.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     //[Area("Admin")]
     public class UserController : Controller
     {
         private UserManager<AppUser> userManager;
         private RoleManager<IdentityRole> roleManager;
-       // private StoriesRepository storyRepo;
+        private IStories storyRepo;
         public UserController(UserManager<AppUser> userMngr,
-            RoleManager<IdentityRole> roleMngr)  //, StoriesRepository storiesRepo  => to add 
+            RoleManager<IdentityRole> roleMngr, IStories storiesRepo)  //, StoriesRepository storiesRepo  => to add 
         {
-           // storyRepo = storiesRepo;
+            storyRepo = storiesRepo;
             userManager = userMngr;
             roleManager = roleMngr;
+            
         }
 
         public async Task<IActionResult> Index()
@@ -33,6 +34,7 @@ namespace IvanCastronuno.Controllers
                 user.RoleNames = await userManager.GetRolesAsync(user);
                 users.Add(user);
             }
+
             UserViewModel model = new UserViewModel
             {
                 Users = users,
@@ -40,7 +42,7 @@ namespace IvanCastronuno.Controllers
             };
             return View(model);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
@@ -48,6 +50,7 @@ namespace IvanCastronuno.Controllers
             if (user != null)
             {
                 IdentityResult result = await userManager.DeleteAsync(user);
+                
                 if (!result.Succeeded)
                 {
                     // if failed
@@ -65,7 +68,7 @@ namespace IvanCastronuno.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+            return RedirectToAction("Register", "Account");
         }
 
         [HttpPost]
@@ -90,7 +93,7 @@ namespace IvanCastronuno.Controllers
             }
             return View(model);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> AddToAdmin(string id)
         {
@@ -107,7 +110,7 @@ namespace IvanCastronuno.Controllers
             }
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> RemoveFromAdmin(string id)
         {
@@ -116,7 +119,7 @@ namespace IvanCastronuno.Controllers
             if (result.Succeeded) { }
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> DeleteRole(string id)
         {
@@ -125,7 +128,7 @@ namespace IvanCastronuno.Controllers
             if (result.Succeeded) { }
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> CreateAdminRole()
         {

@@ -20,6 +20,4 @@ namespace IvanCastronuno.Models
         public IList<string> RoleNames { get; set; }
     }
 
-
-
 }

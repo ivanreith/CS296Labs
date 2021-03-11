@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IvanCastronuno.Migrations
 {
     [DbContext(typeof(StoryContext))]
-    [Migration("20210127033858_Validation2")]
-    partial class Validation2
+    [Migration("20210311001714_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,36 @@ namespace IvanCastronuno.Migrations
                 .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("IvanCastronuno.Models.CommentModel", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CommentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CommentText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CommenterId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("StoriesModelFormStoryID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CommentId");
+
+                    b.HasIndex("CommenterId");
+
+                    b.HasIndex("StoriesModelFormStoryID");
+
+                    b.ToTable("Comments");
+                });
 
             modelBuilder.Entity("IvanCastronuno.Models.StoriesModelForm", b =>
                 {
@@ -54,32 +84,6 @@ namespace IvanCastronuno.Migrations
                     b.HasIndex("PosterId");
 
                     b.ToTable("Story");
-
-                    b.HasData(
-                        new
-                        {
-                            StoryID = 1,
-                            StoryText = "To do a travel wearing armor isn't fun",
-                            StoryTime = new DateTime(2021, 1, 26, 0, 0, 0, 0, DateTimeKind.Local),
-                            StoryTitle = "Viaje",
-                            StoryTopic = "Travel"
-                        },
-                        new
-                        {
-                            StoryID = 2,
-                            StoryText = "To redo your costume three times for not follow the instructions is a common noob mistake.",
-                            StoryTime = new DateTime(2021, 1, 26, 0, 0, 0, 0, DateTimeKind.Local),
-                            StoryTitle = "Crafting",
-                            StoryTopic = "Use instructions"
-                        },
-                        new
-                        {
-                            StoryID = 3,
-                            StoryText = "When on a recreation , if u have food , you'll find friends",
-                            StoryTime = new DateTime(2021, 1, 26, 0, 0, 0, 0, DateTimeKind.Local),
-                            StoryTitle = "Food",
-                            StoryTopic = "Find friends"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -294,99 +298,21 @@ namespace IvanCastronuno.Migrations
                         .HasMaxLength(50);
 
                     b.HasDiscriminator().HasValue("AppUser");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = "bf56465b-d047-486e-9012-9a9188cf09a9",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "e9c5315a-1f77-4dce-890f-ea069a6a66fc",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "d624e8d4-43cc-4bea-b92d-b62b7aa19a9e",
-                            TwoFactorEnabled = false,
-                            UserName = "Johnny",
-                            Name = "Johnny"
-                        },
-                        new
-                        {
-                            Id = "65bd40b3-a7ce-4414-9749-dce37b221db8",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "deb44eb6-8d54-4fb6-8f25-d201c4a7fe41",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "c1179e99-b0aa-489e-bd3f-7c87b99c7435",
-                            TwoFactorEnabled = false,
-                            UserName = "Tommy",
-                            Name = "Tommy"
-                        },
-                        new
-                        {
-                            Id = "14517817-2c79-4e06-9fd0-5f549a9d549a",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "7a4e13d4-377c-4e21-989d-fc6fd452c123",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "aa17a7cd-dbce-4b1a-8c08-053836feb8b1",
-                            TwoFactorEnabled = false,
-                            UserName = "Danny",
-                            Name = "Danny"
-                        },
-                        new
-                        {
-                            Id = "97a426c8-0dee-4ac8-a70d-1725e6b9ee94",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "712f6233-d5b1-48de-bb52-ea1b2c2755e7",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "ba43cdeb-b64f-4bb1-9934-fb225094c7e8",
-                            TwoFactorEnabled = false,
-                            UserName = "Mannly",
-                            Name = "Mannly"
-                        },
-                        new
-                        {
-                            Id = "e14715e4-5e86-4d4c-8583-eb640f640d46",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "4b3fdf63-f535-48e2-bcdf-951359902f63",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "8c4bb9fa-f0d5-4b13-815b-c00410bd95d9",
-                            TwoFactorEnabled = false,
-                            UserName = "Conny",
-                            Name = "Conny"
-                        },
-                        new
-                        {
-                            Id = "c39d63a3-b37e-44ab-844e-05a1848dbcb1",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "3103ac96-b29c-4ed9-b09d-ab857c3c75f5",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "57588d5f-1411-492f-a834-c2b23d4d4723",
-                            TwoFactorEnabled = false,
-                            UserName = "Sunny",
-                            Name = "Sunny"
-                        },
-                        new
-                        {
-                            Id = "420a9fe5-981a-4043-b947-959037d6cc0e",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "f0dbecbc-8709-4533-b64b-5af441f0626e",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "4a0ce6bc-ecb1-4e9d-8da3-672208ab7099",
-                            TwoFactorEnabled = false,
-                            UserName = "Diandra",
-                            Name = "Diandra"
-                        });
+            modelBuilder.Entity("IvanCastronuno.Models.CommentModel", b =>
+                {
+                    b.HasOne("IvanCastronuno.Models.AppUser", "Commenter")
+                        .WithMany()
+                        .HasForeignKey("CommenterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("IvanCastronuno.Models.StoriesModelForm", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("StoriesModelFormStoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("IvanCastronuno.Models.StoriesModelForm", b =>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "s5+tJm20/hZpqcaQeudFojLINZVO7zmmjl6j+9RngmJ0vKtZt+9sI3E/h0etl3yP6W7z7EjjyqHUJAJHPDtyFQ==",
+  "dgSpecHash": "9lW3wi9LryvLEBYKqd9W0HOuQMBhvYfRG7SOXLnn0O2xqZPJBo4wPTNKSAM9GqcRqJHwEqKE3xR4lp+xwCGkTQ==",
   "success": true,
-  "projectFilePath": "D:\\TRANSFER ASUS\\CS296\\Lab06\\CS296Labs\\IvanCastronunoTests\\IvanCastronunoTests.csproj",
+  "projectFilePath": "D:\\TRANSFER ASUS\\CS296\\Lab07\\CS296Labs\\IvanCastronunoTests\\IvanCastronunoTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ivanr\\.nuget\\packages\\coverlet.collector\\1.3.0\\coverlet.collector.1.3.0.nupkg.sha512",
     "C:\\Users\\ivanr\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.9\\microsoft.aspnetcore.cryptography.internal.3.1.9.nupkg.sha512",
