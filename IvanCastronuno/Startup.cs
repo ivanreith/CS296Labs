@@ -1,12 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using IvanCastronuno.Models;
 using IvanCastronuno.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,26 +30,34 @@ namespace IvanCastronuno
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           /* services.Configure<CookiePolicyOptions>(options =>
+            services.AddDbContext<StoryContext>(options => options.UseSqlServer(
+                Configuration.GetConnectionString("StoryContext")));
+            services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
             });
-            services.AddMvc();  */
+            services.AddMvc();  
             // Injecting the repositories into the controllers.
 
             services.AddTransient<IStories, StoriesRepository>(); // repository Interface then repo class
-            //services.AddTransient<UserRepository, UsersRepository>();
-
+           // services.AddTransient<UserRepository, UsersRepository>();
+           services.AddSingleton<HtmlEncoder>(
+            HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin,
+                                              UnicodeRanges.CjkUnifiedIdeographs }));  // added for security, XSS
 
             services.AddControllersWithViews();
-            services.AddDbContext<StoryContext>(options => options.UseSqlServer(
-                Configuration.GetConnectionString("StoryContext")));
+           
+            // Stuff added for Identity
+            services.AddIdentity<AppUser, IdentityRole>()
+             .AddEntityFrameworkStores<StoryContext>()
+             .AddDefaultTokenProviders();
+            //End identity stuff
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, StoryContext context )
         {
             if (env.IsDevelopment())
             {
@@ -57,19 +69,41 @@ namespace IvanCastronuno
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+           /*app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+                context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");// added for x-frame options header not set error
+                await next();
+            });
+            app.Use(async (context, next) =>
+            {
+                context.Response.GetTypedHeaders().CacheControl =
+                    new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+                    {
+                        Public = true,
+                        MaxAge = TimeSpan.FromSeconds(10)
+                    };
+                context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
+                new string[] { "Accept-Encoding" };
+
+                await next();
+            });*/
+            //app.UseMvc(); not supported while using end point.. 
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication(); // ADDED for indentity
             app.UseAuthorization();
-
+          
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
             });
+            StoryContext.CreateAdminUser(app.ApplicationServices).Wait();
         }
     }
 }

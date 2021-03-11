@@ -1,39 +1,98 @@
 ﻿@model List<StoriesModelForm>
 @{
-    ViewBag.Title = "Stories";
+    ViewBag.Title = "Story";
 }
-
+@using Microsoft.AspNetCore.Identity
+@* @using Microsoft.AspNetCore.Mvc.Razor *@
+@inject SignInManager<AppUser> sigInManager
 <h2>Tell us about your adventures while going to events.</h2>
 
 <a asp-controller="Story" asp-action="Add">Add Story</a>
 <table class="table table-bordered table-striped">
     <thead>
-        <tr>
-            <th>Title</th>
-            <th>Topic</th>            
-            <th>Text</th>
-            <th>User</th>
-        </tr>
+
     </thead>
     <tbody>
         @if (Model != null)
-        { 
-            @foreach (var story in Model)
+        {
+        @foreach (var story in Model)
             {
-                <tr>
-                    <td>@story.StoryTitle</td>
-                    <td>@story.StoryTopic</td>                    
-                    <td>@story.StoryText</td>
-                    <td>@story.Poster.UserName</td>
-                    <td>
-                        <a asp-controller="Story" asp-action="Edit"
-                           asp-route-id="@story.StoryID"
-                           asp-route-slug="@story.Slug">Edit</a>
-                        <a asp-controller="Story" asp-action="Delete"
-                           asp-route-id="@story.StoryID"
-                           asp-route-slug="@story.Slug">Delete</a>
-                    </td>
-                </tr>
+        <tr>
+            <th>Title</th>
+            <th>Topic</th>
+            <th>Text</th>
+            <th>User Name</th>
+            <th>Last Updated</th>
+            <th></th>
+
+        </tr>
+        <tr>
+            <td>@story.StoryTitle</td>
+            <td>@story.StoryTopic</td>
+            <td>@story.StoryText</td>
+            @if (story.Poster.Name != null)
+                    {
+            <td>@story.Poster.Name</td>
+                    }
+                    else
+                    {
+            <td>Story without user</td>
+                    }
+            <td>@story.StoryTime</td>
+            <td>
+                @if (User.IsInRole("Admin"))
+                            {
+                <a asp-controller="Story" asp-action="Edit"
+                   asp-route-id="@story.StoryID"
+                   asp-route-slug="@story.Slug">Edit</a>
+                           }
+                @if (User.IsInRole("Admin"))
+                            {
+                <a asp-controller="Story" asp-action="Delete"
+                   asp-route-id="@story.StoryID"
+                   asp-route-slug="@story.Slug">Delete</a>
+                           }
+                <a asp-controller="Story" asp-action="Comment"
+                   asp-route-id="@story.StoryID"
+                   asp-route-slug="@story.Slug">Comment</a>
+            </td>
+        </tr>
+        @if (story.Comments.Count != 0)
+                {
+        <tr>
+            <td></td>
+            <td>
+                <b>Comments about this story:</b>
+            </td>
+        </tr>
+        @foreach (CommentModel comment in story.Comments)
+                    {
+        <tr>
+            <td></td>
+            <td>
+                <strong>-</strong>
+                @comment.CommentText
+            </td>
+            <td>
+                <strong>Posted By:</strong>
+                @comment.Commenter.Name
+            </td>
+            <td>
+                <strong>When:</strong>
+                @comment.CommentDate
+            </td>
+
+
+        </tr>
+                    }
+                }
+
+
+
+
+
+
+
             }
         }
     </tbody>

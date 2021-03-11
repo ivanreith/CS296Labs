@@ -10,12 +10,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <DestinationConnectionStrings Include="StoryContext">
-      <Value>Server=tcp:ivancastronuno.database.windows.net,1433%3bInitial Catalog=FanPage%3bPersist Security Info=False%3bUser ID=root2%3bPassword=ivan2733%40%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+      <Value>Server=tcp:ivancastronuno.database.windows.net,1433%3bInitial Catalog=FanPage2%3bPersist Security Info=False%3bUser ID=root2%3bPassword=ivan2733%40%3bMultipleActiveResultSets=true%3bEncrypt=True%3bTrustServerCertificate=true%3bConnection Timeout=30%3b</Value>
     </DestinationConnectionStrings>
   </ItemGroup>
   <ItemGroup>
     <EFMigrations Include="IvanCastronuno.Models.StoryContext">
-      <Value>Server=tcp:ivancastronuno.database.windows.net,1433%3bInitial Catalog=FanPage%3bPersist Security Info=False%3bUser ID=root2%3bPassword=ivan2733%40%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30%3b</Value>
+      <Value>Server=tcp:ivancastronuno.database.windows.net,1433%3bInitial Catalog=FanPage2%3bPersist Security Info=False%3bUser ID=root2%3bPassword=ivan2733%40%3bMultipleActiveResultSets=true%3bEncrypt=True%3bTrustServerCertificate=true%3bConnection Timeout=30%3b</Value>
     </EFMigrations>
   </ItemGroup>
 </Project>

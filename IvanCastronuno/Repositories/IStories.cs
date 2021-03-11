@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,5 +15,10 @@ namespace IvanCastronuno.Repositories
         StoriesModelForm GetStoryById(int StoryId); //Retrieve a story by topic
         void UpdateStory(StoriesModelForm stories);
         void DeleteStory(StoriesModelForm stories);
+        List<CommentModel> GetCommentsByStory(int Id);
+        List<CommentModel> GetComments();
+        CommentModel GetCommentById(int Id);
+        void DeleteComment(CommentModel comment);
+        void UpdateComment(CommentModel comment);
     }
 }

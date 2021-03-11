@@ -3,17 +3,21 @@ using System;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Channels;
-
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace IvanCastronuno.Models
 {
 
-    public class User
+    public class AppUser : IdentityUser
     {
-        public string UserId { get; set; }
-        public string UserName { get; set; }
+        
+        [Required (ErrorMessage = "Name is required....")]
+        [MaxLength(50, ErrorMessage = "Name between 1 and 50 chars")]
+        public string Name { get; set; }
+        [NotMapped]
+        public IList<string> RoleNames { get; set; }
     }
-
-
 
 }

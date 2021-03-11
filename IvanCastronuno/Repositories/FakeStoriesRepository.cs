@@ -14,7 +14,7 @@ namespace IvanCastronuno.Repositories
         //public IQueryable<StoriesModelForm> stories => throw new NotImplementedException();
         List<StoriesModelForm> Stories = new List<StoriesModelForm>();
         public IQueryable<StoriesModelForm> stories { get { return Stories.AsQueryable(); } }
-        // public IQueryable<StoriesModelForm> Stories => Stories;
+        // public IQueryable<StoriesModelForm> Story => Story;
 
         // public IQueryable<StoriesModelForm> Story  { get { return (IQueryable<StoriesModelForm>)stories; }}
 
@@ -26,9 +26,29 @@ namespace IvanCastronuno.Repositories
 
         }
 
+        public void DeleteComment(CommentModel comment)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteStory(StoriesModelForm stories)
         {
           Stories.Remove(stories);
+        }
+
+        public CommentModel GetCommentById(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CommentModel> GetComments()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CommentModel> GetCommentsByStory(int Id)
+        {
+            throw new NotImplementedException();
         }
 
         public StoriesModelForm GetStoryById(int Id)
@@ -43,8 +63,13 @@ namespace IvanCastronuno.Repositories
             }
          return null;
             // throw new NotImplementedException();
-            //  StoriesModelForm storyRecovered = Stories.Find(Id) ;  // This one gave me an type missmatch error
+            //  StoriesModelForm storyRecovered = Story.Find(Id) ;  // This one gave me an type missmatch error
             //            return storyRecovered;
+        }
+
+        public void UpdateComment(CommentModel comment)
+        {
+            throw new NotImplementedException();
         }
 
         public void UpdateStory(StoriesModelForm stories)

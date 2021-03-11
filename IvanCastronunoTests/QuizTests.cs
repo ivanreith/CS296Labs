@@ -17,8 +17,8 @@ namespace IvanCastronunoTests
             {
                 Quest1 = "answer1",
                 Quest2 = "answer2",
-                UserQuesting = new User()
-                { UserName ="Name"}
+                UserQuesting = new AppUser()
+                { Name ="Name"}
             };
 
             // Act
@@ -37,8 +37,8 @@ namespace IvanCastronunoTests
             {
                 Quest1 = "wrong1",
                 Quest2 = "wrong2",
-                UserQuesting = new User()
-                { UserName = "Name" }
+                UserQuesting = new AppUser()
+                { Name = "Name" }
             };
 
             // Act
@@ -56,8 +56,8 @@ namespace IvanCastronunoTests
             {
                 Quest1 = "answer1",
                 Quest2 = "answer2",  // the answers are correct
-                UserQuesting = new User()
-                { UserName = null } // Technically if the name is empty, the quiz should not give true 
+                UserQuesting = new AppUser()
+                { Name = null } // Technically if the name is empty, the quiz should not give true 
             };
 
             // Act

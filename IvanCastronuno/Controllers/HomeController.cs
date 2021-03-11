@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using IvanCastronuno.Models;
 using Microsoft.EntityFrameworkCore;
+using IvanCastronuno.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IvanCastronuno.Controllers
 {
@@ -17,20 +19,26 @@ namespace IvanCastronuno.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }*/
+        }*/// keep that part just in case
         // Start database adding stuff
         private StoryContext Context { get; set; }
-
-        public HomeController(StoryContext ctx)
+        IStories Repo;
+        public HomeController(IStories r, StoryContext ctx)
         {
+            Repo = r;
             Context = ctx;
         }
 
         public IActionResult Stories()
         {
-            var stories = Context.Stories.Include(m => m.Poster)
-                .OrderBy(m => m.StoryTopic).ToList();
+
+            List<StoriesModelForm> stories = Repo.stories.ToList<StoriesModelForm>();
+
             return View(stories);
+            /*  List<StoriesModelForm> stories = Context.Story.Include(m => m.Poster)
+                .OrderBy(m => m.StoryTopic).ToList();
+            return View(stories);*/ // = > moved due to repository
+
         }
         // End database adding stuff 
         
@@ -38,7 +46,9 @@ namespace IvanCastronuno.Controllers
         {
             return View();
         }
+
        
+
         public IActionResult History()
         {
             return View();
@@ -50,24 +60,12 @@ namespace IvanCastronuno.Controllers
             return View(model);
 
         }
-        /*
-        public IActionResult Stories()
 
-          
-             {
+        public IActionResult AdminIndex()
+        {
+            return View();
+        }
 
-           
-                //  ViewBag.FV = 99999;  Something for the empty
-                return View();
-            }
-            [HttpPost]
-            public IActionResult Stories(StoriesModelForm model)
-            {
-              
-                    return View(model);
-            
-            }*/
-   
         public IActionResult SourcesIndex()
         {
             return View();
@@ -82,5 +80,6 @@ namespace IvanCastronuno.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+      
     }
 }
